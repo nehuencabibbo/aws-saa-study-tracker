@@ -1,38 +1,94 @@
 # AWS SAA Study Tracker
 
-Extensión de Chrome para planificar el curso **AWS Certified Solutions Architect - Associate (SAA-C03)** de Adrian Cantrill.
+Extensión de Chrome para planificar y seguir el curso **AWS Certified Solutions Architect – Associate (SAA-C03)** de Adrian Cantrill.
 
-## Instalar en Chrome
+La extensión convierte la duración de las lecciones completadas en progreso diario y total. El avance se acredita cuando la plataforma marca una lección como completa; no intenta medir el tiempo parcial del reproductor.
 
-1. Abrí `chrome://extensions`.
-2. Activá **Modo de desarrollador**.
-3. Elegí **Cargar extensión sin empaquetar** y seleccioná esta carpeta.
-4. Abrí el curso en [learn.cantrill.io](https://learn.cantrill.io/courses/1820301/lectures/41301626) y recargá la página.
-5. Abrí el ícono de la extensión para ver el progreso y editar las fechas del plan.
+## Interfaz
 
-Si actualizás los archivos de una extensión ya cargada, usá **Recargar** en `chrome://extensions` y también recargá la pestaña del curso.
+La ventana reúne la meta del día, el avance acumulado del curso, el plazo elegido y el estado de sincronización.
+
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" alt="Panel del tracker con el progreso diario y total del curso" width="390">
+</p>
+<p align="center"><sub>Vista de ejemplo con datos ilustrativos.</sub></p>
+
+El plan permite definir una cantidad de días desde la fecha de inicio o una fecha final fija. La vista previa calcula el ritmo diario con el video pendiente.
+
+<p align="center">
+  <img src="docs/screenshots/date-plan.png" alt="Editor del plan con fecha de inicio, duración y ritmo estimado" width="390">
+</p>
+<p align="center"><sub>Editor de fechas y vista previa del ritmo diario.</sub></p>
+
+## Funciones
+
+- Meta diaria en minutos, con barra y porcentaje.
+- Progreso total por duración: tiempo visto, tiempo pendiente y porcentaje del curso.
+- Plan ajustable por duración o fecha final, con ritmo diario estimado.
+- Sincronización automática al detectar cambios en la lista de lecciones y botón **Actualizar** para volver a leerla a pedido.
+- Confeti al alcanzar la meta diaria, con un botón que se habilita al llegar al 100 %.
+- Porcentaje diario en el badge del ícono de Chrome.
+- Progreso guardado en el almacenamiento local de Chrome.
+
+## Instalación en modo desarrollador
+
+No hace falta compilar ni instalar dependencias.
+
+1. Cloná este repositorio o descargá el código fuente.
+2. Abrí `chrome://extensions` en Chrome y activá **Modo de desarrollador**.
+3. Elegí **Cargar extensión sin empaquetar** y seleccioná la carpeta del proyecto.
+4. Iniciá sesión en el curso y abrí una lección del SAA-C03 en [learn.cantrill.io](https://learn.cantrill.io/courses/1820301/lectures/41301626).
+5. Abrí el ícono de **AWS SAA Study Tracker** para consultar el progreso y configurar las fechas.
+
+Al actualizar los archivos, recargá la extensión desde `chrome://extensions` y también la pestaña del curso. La pestaña necesita cargar el content script de la versión nueva.
+
+## Uso
+
+1. Abrí una lección del curso SAA-C03. La extensión lee el menú de lecciones y guarda el estado que informa la plataforma.
+2. En el popup, revisá cuánto completaste hoy, cuánto te falta para la meta y el progreso total del curso.
+3. En **Editar fechas**, indicá cuándo empezaste y elegí una duración o una fecha final. La vista previa muestra el ritmo diario necesario antes de guardar.
+4. Completá las lecciones en la plataforma. Cuando el menú las marque como completas, el tracker suma su duración y actualiza las barras.
+5. Usá **Actualizar** si querés forzar una lectura de la pestaña activa.
+
+El badge de Chrome muestra el porcentaje de la meta diaria. El popup conserva el detalle en minutos y horas.
+
+## Cómo se calcula
+
+- La meta diaria se calcula con el video pendiente y los días que quedan hasta la fecha final. El día de inicio cuenta como el primer día del plan.
+- Durante el día, la cuota se mantiene estable mientras el progreso suma las lecciones completadas ese día; el ritmo se vuelve a calcular al cambiar el día.
+- El progreso total usa la duración de los videos, no el conteo de elementos. Cuestionarios y avisos sin duración aparecen en el número de lecciones, pero no suman tiempo.
+- Una lección cuenta solo cuando la plataforma la marca como completa. No se contabilizan avances parciales ni minutos reproducidos sin completar la lección.
+- La extensión incluye un catálogo inicial de 365 elementos del sidebar, con 340 duraciones que suman **60 h 42 min**. El botón **Actualizar** permite refrescarlo con el contenido actual de la página.
+
+## Privacidad y permisos
+
+El progreso y las fechas se guardan localmente en `chrome.storage.local`. La extensión no envía datos a servicios externos ni solicita credenciales del curso. El content script lee el sidebar de lecciones en páginas de `learn.cantrill.io` y envía ese catálogo al service worker de la extensión para guardar el progreso.
+
+El manifiesto declara estos permisos:
+
+- `storage`: guardar el catálogo y el plan en el perfil local de Chrome.
+- `activeTab`: consultar la pestaña activa cuando se solicita una actualización manual.
+- Acceso a `https://learn.cantrill.io/courses/*`: ejecutar el lector del sidebar en páginas del curso.
 
 ## Diagnóstico
 
-- Al tocar **Actualizar**, el popup registra la URL de la pestaña activa y si recibió respuesta del content script. Para verlo: clic derecho en el popup → **Inspeccionar** → **Console**.
-- En la consola de la página del curso, filtrá por `[AWS SAA Tracker]`: registra si el script se inyectó, qué URL vio, por qué selector/ID no reconoció el curso y cuántas lecciones encontró.
-- Al pulsar **Complete and Continue**, el content script vuelve a leer el sidebar y reintenta a los 500, 1500 y 3500 ms; buscá los logs `completion action retry` para confirmar esos intentos.
-- En `chrome://extensions`, abrí **service worker → Inspeccionar** para ver los snapshots recibidos y errores al guardarlos.
-- El popup solicita el permiso `activeTab` al abrirlo desde el botón de la extensión para poder incluir la URL activa en el diagnóstico.
+- Si **Actualizar** avisa que no hay respuesta, recargá la pestaña del curso. Esto también es necesario después de recargar o actualizar la extensión.
+- Para ver los logs del popup: clic derecho sobre el popup → **Inspeccionar** → **Console**.
+- Para ver los logs de la página, abrí DevTools en la lección y filtrá la consola por `[AWS SAA Tracker]`.
+- Para revisar el almacenamiento y los errores del service worker, abrí los detalles de la extensión en `chrome://extensions` y elegí **Inspeccionar** en el service worker.
+- El lector procesa el curso SAA-C03 con ID `1820301`. Si Adrian Cantrill cambia la estructura del sidebar, puede ser necesario actualizar los selectores de `content.js`.
 
-## Cómo calcula el progreso
+## Estructura del proyecto
 
-- El catálogo inicial incluye las 25 secciones y 365 elementos del HTML compartido. Los 340 elementos con duración suman **60 h 42 min** de video.
-- El plan guarda una fecha de inicio y permite elegir una duración en días o una fecha final fija. La duración cuenta el día de inicio como el primer día.
-- La meta diaria se recalcula con el tiempo de video pendiente y los días que quedan hasta la fecha final; cada lección completada actualiza el ritmo requerido. Durante el día, la cuota no se mueve mientras la barra suma las lecciones vistas; se ajusta al cambiar el día.
-- Al editar las fechas, la vista previa muestra el ritmo diario estimado antes de guardar. Si la fecha final ya pasó, se indica que hace falta elegir una fecha futura.
-- Al actualizar desde una versión anterior, la fecha de inicio se establece en hoy y se conserva la duración guardada. Se puede editar para indicar el día real en que comenzó el curso.
-- La ventana también muestra el avance total por duración: horas de video completadas sobre el total, porcentaje, barra y tiempo pendiente.
-- El badge del ícono de Chrome muestra el porcentaje diario con `%` mientras haya una meta activa; al cumplirla marca `100%`. Si el curso está completo muestra `✓`, y si el plazo venció muestra `!`.
-- Se acredita una lección solo cuando la plataforma la marca como completa. No se registra progreso parcial del reproductor.
-- El primer escaneo ocurre al cargar la página del curso. Abrir el popup solo muestra los datos guardados; **Actualizar** vuelve a leer el contenedor a pedido. Mientras la página está abierta, un observador detecta cambios del sidebar y actualiza el progreso automáticamente.
-- Las lecciones que ya aparecen completas en el catálogo inicial se toman como progreso histórico. Si la primera lectura encuentra nuevas lecciones completadas desde ese catálogo, también las acredita en el día actual.
-- Los cuestionarios y avisos sin duración aparecen en el conteo de lecciones, pero no suman minutos.
-- Los datos se guardan localmente en el almacenamiento de Chrome. El confeti aparece sobre la página del curso cuando una lección completada hace que alcances la meta del día; el botón del popup se habilita al llegar al 100% para volver a lanzarlo.
-
-El script se ejecuta en las rutas `/courses/*` de `learn.cantrill.io`, pero solo procesa el curso SAA-C03 con ID `1820301`; no mezcla otros cursos ni accede a credenciales.
+```text
+├── assets/
+│   ├── course-data.json       # Catálogo inicial de secciones y lecciones
+│   └── study-tracker-icon.png # Ícono de la extensión
+├── docs/screenshots/          # Capturas del popup para este README
+├── background.js              # Persistencia, cálculos y badge
+├── content.js                 # Lectura del sidebar y sincronización
+├── manifest.json              # Configuración de Chrome MV3
+├── popup.css                  # Estilos del popup
+├── popup.html                 # Estructura de la interfaz
+└── popup.js                   # Plan, métricas y eventos del popup
+```
