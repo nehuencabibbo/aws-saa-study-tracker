@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AWS SAA Study Tracker</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-icon" aria-hidden="true">☁</div>
+        <div>
+          <p class="eyebrow">AWS STUDY TRACKER</p>
+          <h1>Solutions Architect<br>Associate</h1>
+        </div>
+        <span class="course-badge">SAA-C03</span>
+      </header>
+
+      <section class="daily-card" aria-labelledby="daily-heading">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">PROGRESO DE HOY</p>
+            <h2 id="daily-heading">Tu meta diaria</h2>
+          </div>
+          <span class="sun-icon" aria-hidden="true">◷</span>
+        </div>
+        <div class="progress-copy">
+          <strong id="today-progress">—</strong>
+          <span id="today-percent">—</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Progreso diario" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-fill" id="daily-fill"></div>
+        </div>
+        <p class="goal-caption" id="goal-caption">Cargando tu progreso…</p>
+      </section>
+
+      <section class="total-card" aria-labelledby="total-heading">
+        <div class="total-heading">
+          <div>
+            <p class="eyebrow">PROGRESO TOTAL DEL CURSO</p>
+            <h2 id="total-heading">Avance por horas de video</h2>
+          </div>
+          <strong class="total-percent" id="total-percent">—</strong>
+        </div>
+        <div class="total-copy">
+          <strong id="total-progress">—</strong>
+          <span id="total-duration">—</span>
+        </div>
+        <div class="total-track" id="total-track" role="progressbar" aria-label="Progreso total del curso" aria-valuemin="0" aria-valuemax="100">
+          <div class="total-fill" id="total-fill"></div>
+        </div>
+        <p class="total-caption" id="total-caption">Cargando el tiempo total…</p>
+        <p class="lesson-caption" id="lesson-count">— lecciones completas</p>
+      </section>
+
+      <section class="plan-card" aria-labelledby="plan-heading">
+        <div class="plan-copy">
+          <p class="eyebrow">TU PLAN</p>
+          <h2 id="plan-heading"><span id="daily-target">—</span><small> por día</small></h2>
+          <p class="muted" id="plan-summary">Duración del plan: 90 días</p>
+        </div>
+        <form id="plan-form" class="plan-form">
+          <label for="plan-days">Terminar en</label>
+          <div class="input-row">
+            <input id="plan-days" name="days" type="number" min="1" max="3650" step="1" required aria-label="Cantidad de días">
+            <span>días</span>
+            <button type="submit" aria-label="Guardar duración del plan">Guardar</button>
+          </div>
+          <p class="form-error" id="form-error" role="alert"></p>
+        </form>
+      </section>
+
+      <footer class="sync-footer">
+        <div class="sync-info">
+          <span class="sync-dot" id="sync-dot"></span>
+          <p id="sync-status">Cargando…</p>
+        </div>
+        <button class="refresh-button" id="refresh-button" type="button" title="Volver a leer el curso">
+          <span aria-hidden="true">↻</span> Actualizar
+        </button>
+      </footer>
+      <p class="privacy-note">Solo cuenta una lección cuando la plataforma la marca como completa.</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

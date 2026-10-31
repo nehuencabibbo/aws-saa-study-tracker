@@ -1,0 +1,2687 @@
+{
+  "id": "aws-saa-c03",
+  "title": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+  "source": "user-pasted-course-sidebar",
+  "sections": [
+    {
+      "title": "INTRODUCTION & SCENARIO",
+      "lessons": [
+        {
+          "id": "41301638",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301638",
+          "completed": true,
+          "title": "Public Introduction",
+          "durationSeconds": 244
+        },
+        {
+          "id": "41301641",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301641",
+          "completed": true,
+          "title": "AWS Exams",
+          "durationSeconds": 1052
+        },
+        {
+          "id": "41301642",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301642",
+          "completed": true,
+          "title": "Scenario - Animals4life",
+          "durationSeconds": 808
+        },
+        {
+          "id": "41301643",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301643",
+          "completed": true,
+          "title": "Connect with other students and your instructor",
+          "durationSeconds": 190
+        },
+        {
+          "id": "49074936",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/49074936",
+          "completed": true,
+          "title": "COURSE UPGRADES - SAVE $ WHEN ADDING MORE COURSES",
+          "durationSeconds": null
+        },
+        {
+          "id": "43008829",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/43008829",
+          "completed": true,
+          "title": "SHARED LESSONS [SHAREDALL] [ASSOCIATESHARED] etc...",
+          "durationSeconds": null
+        },
+        {
+          "id": "44031509",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/44031509",
+          "completed": true,
+          "title": "🚨 READ ME 🚨 - ENABLE EMAIL UPDATES (IT'S WORTH IT)",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "Course Fundamentals and AWS Accounts",
+      "lessons": [
+        {
+          "id": "41301458",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301458",
+          "completed": true,
+          "title": "AWS Accounts - The basics",
+          "durationSeconds": 693
+        },
+        {
+          "id": "63958656",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/63958656",
+          "completed": true,
+          "title": "[202511UPDATE] [DEMO] - Creating an AWS Account",
+          "durationSeconds": 316
+        },
+        {
+          "id": "41301460",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301460",
+          "completed": true,
+          "title": "Multi-factor Authentication (MFA)",
+          "durationSeconds": 505
+        },
+        {
+          "id": "63972846",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/63972846",
+          "completed": true,
+          "title": "[202511UPDATE] [DEMO] Adding MFA - General Account Root User",
+          "durationSeconds": 287
+        },
+        {
+          "id": "41301463",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301463",
+          "completed": true,
+          "title": "[DOITYOURSELF] Creating the Production Account",
+          "durationSeconds": null
+        },
+        {
+          "id": "41301464",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301464",
+          "completed": true,
+          "title": "Identity and Access Management (IAM) Basics",
+          "durationSeconds": 781
+        },
+        {
+          "id": "63973710",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/63973710",
+          "completed": true,
+          "title": "[202511UPDATE] [DEMO] Creating IAMADMIN user & adding MFA",
+          "durationSeconds": 497
+        },
+        {
+          "id": "41301467",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301467",
+          "completed": true,
+          "title": "IAM Access Keys",
+          "durationSeconds": 430
+        },
+        {
+          "id": "41301468",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301468",
+          "completed": true,
+          "title": "[DEMO] Creating Access keys and setting up AWS CLI v2 tools",
+          "durationSeconds": 1063
+        }
+      ]
+    },
+    {
+      "title": "Cloud, Networking and Technical Fundamentals (moved to FREE dedicated course)",
+      "lessons": [
+        {
+          "id": "45685105",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/45685105",
+          "completed": true,
+          "title": "TECH FUNDAMENTALS CONTENT (!!PLEASE READ ME!!)",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "AWS Fundamentals",
+      "lessons": [
+        {
+          "id": "41301617",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301617",
+          "completed": true,
+          "title": "[ASSOCIATESHARED] AWS Public vs Private Services",
+          "durationSeconds": 424
+        },
+        {
+          "id": "41301618",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301618",
+          "completed": true,
+          "title": "[ASSOCIATESHARED] AWS Global Infrastructure",
+          "durationSeconds": 894
+        },
+        {
+          "id": "41301619",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301619",
+          "completed": true,
+          "title": "[ASSOCIATESHARED] AWS Default Virtual Private Cloud (VPC)",
+          "durationSeconds": 919
+        },
+        {
+          "id": "41301620",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301620",
+          "completed": true,
+          "title": "[ASSOCIATESHARED] Elastic Compute Cloud (EC2) Basics",
+          "durationSeconds": 886
+        },
+        {
+          "id": "64085766",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/64085766",
+          "completed": true,
+          "title": "[202512UPDATE] [ASSOCIATESHARED] [DEMO] My First EC2 Instance - PART1",
+          "durationSeconds": 628
+        },
+        {
+          "id": "64085768",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/64085768",
+          "completed": true,
+          "title": "[202512UPDATE] [ASSOCIATESHARED] [DEMO] My First EC2 Instance - PART2",
+          "durationSeconds": 250
+        },
+        {
+          "id": "41301623",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301623",
+          "completed": true,
+          "title": "[ASSOCIATESHARED]Simple Storage Service (S3) Basics",
+          "durationSeconds": 948
+        },
+        {
+          "id": "41301625",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301625",
+          "completed": true,
+          "title": "[ASSOCIATESHARED] [DEMO] My First S3 Bucket",
+          "durationSeconds": 1114
+        },
+        {
+          "id": "41301626",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301626",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation (CFN) Basics",
+          "durationSeconds": 748
+        },
+        {
+          "id": "41301627",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301627",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Simple Automation With CloudFormation (CFN)",
+          "durationSeconds": 952
+        },
+        {
+          "id": "41301628",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301628",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudWatch (CW) Basics",
+          "durationSeconds": 825
+        },
+        {
+          "id": "41301629",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301629",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [Demo] Simple Monitoring with Cloudwatch",
+          "durationSeconds": 931
+        },
+        {
+          "id": "41301630",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301630",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Shared Responsibility Model",
+          "durationSeconds": 380
+        },
+        {
+          "id": "41301631",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301631",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] High-Availability vs Fault-Tolerance vs Disaster Recovery",
+          "durationSeconds": 1041
+        },
+        {
+          "id": "41301634",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301634",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Route53 (R53) Fundamentals",
+          "durationSeconds": 389
+        },
+        {
+          "id": "41301635",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301635",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Registering a Domain with route53",
+          "durationSeconds": 589
+        },
+        {
+          "id": "41301636",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301636",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] DNS Record Types",
+          "durationSeconds": 805
+        },
+        {
+          "id": "41301637",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301637",
+          "completed": false,
+          "title": "Fundamentals Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "IAM, ACCOUNTS AND AWS ORGANISATIONS",
+      "lessons": [
+        {
+          "id": "41301362",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301362",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] IAM Identity Policies",
+          "durationSeconds": 952
+        },
+        {
+          "id": "41301363",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301363",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] IAM Users and ARNs",
+          "durationSeconds": 829
+        },
+        {
+          "id": "41301364",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301364",
+          "completed": false,
+          "title": "[ASSOCIATE SHARED] [DEMO] Simple Identity Permissions in AWS",
+          "durationSeconds": 966
+        },
+        {
+          "id": "41301365",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301365",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] IAM Groups",
+          "durationSeconds": 468
+        },
+        {
+          "id": "41301366",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301366",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Permissions control using IAM Groups",
+          "durationSeconds": 564
+        },
+        {
+          "id": "41301367",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301367",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] IAM Roles - The Tech",
+          "durationSeconds": 493
+        },
+        {
+          "id": "41301368",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301368",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] When to use IAM Roles",
+          "durationSeconds": 927
+        },
+        {
+          "id": "41301369",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301369",
+          "completed": false,
+          "title": "Service-linked Roles & PassRole",
+          "durationSeconds": 316
+        },
+        {
+          "id": "41301370",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301370",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] AWS Organizations",
+          "durationSeconds": 776
+        },
+        {
+          "id": "41301371",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301371",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] AWS Organizations",
+          "durationSeconds": 1188
+        },
+        {
+          "id": "41301373",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301373",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Service Control Policies (SCPs)",
+          "durationSeconds": 764
+        },
+        {
+          "id": "41301374",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301374",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Using Service Control Policies",
+          "durationSeconds": 1005
+        },
+        {
+          "id": "41301375",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301375",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudWatch Logs",
+          "durationSeconds": 436
+        },
+        {
+          "id": "41301376",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301376",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudTrail",
+          "durationSeconds": 700
+        },
+        {
+          "id": "41301377",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301377",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Implementing an Organizational Trail",
+          "durationSeconds": 1103
+        },
+        {
+          "id": "42087171",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42087171",
+          "completed": false,
+          "title": "AWS Control Tower 101",
+          "durationSeconds": 942
+        },
+        {
+          "id": "41301378",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301378",
+          "completed": false,
+          "title": "IAM & Orgs Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "SIMPLE STORAGE SERVICE (S3)",
+      "lessons": [
+        {
+          "id": "41301469",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301469",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 Security (Resource Policies & ACLs)",
+          "durationSeconds": 1099
+        },
+        {
+          "id": "41301470",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301470",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 Static Hosting",
+          "durationSeconds": 636
+        },
+        {
+          "id": "41301471",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301471",
+          "completed": false,
+          "title": "[SHAREDALL] [Demo] Creating a static website with S3",
+          "durationSeconds": 1075
+        },
+        {
+          "id": "41301473",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301473",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Object Versioning & MFA Delete",
+          "durationSeconds": 461
+        },
+        {
+          "id": "41301474",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301474",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] - S3 Versioning",
+          "durationSeconds": 945
+        },
+        {
+          "id": "41301475",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301475",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 Performance Optimization",
+          "durationSeconds": 702
+        },
+        {
+          "id": "41301476",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301476",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] - S3 Performance",
+          "durationSeconds": 306
+        },
+        {
+          "id": "41301479",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301479",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Key Management Service (KMS)",
+          "durationSeconds": 1118
+        },
+        {
+          "id": "41301480",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301480",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] KMS - Encrypting the battleplans with KMS",
+          "durationSeconds": 763
+        },
+        {
+          "id": "41301481",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301481",
+          "completed": false,
+          "title": "[SHAREDALL] S3 Object Encryption CSE/SSE",
+          "durationSeconds": 1411
+        },
+        {
+          "id": "41301483",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301483",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Object Encryption and Role Separation",
+          "durationSeconds": 890
+        },
+        {
+          "id": "46782023",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/46782023",
+          "completed": false,
+          "title": "S3 Bucket Keys",
+          "durationSeconds": 359
+        },
+        {
+          "id": "41301484",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301484",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 Object Storage Classes - PART1",
+          "durationSeconds": 563
+        },
+        {
+          "id": "41301485",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301485",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 Object Storage Classes - PART2",
+          "durationSeconds": 701
+        },
+        {
+          "id": "41301486",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301486",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 Lifecycle Configuration",
+          "durationSeconds": 493
+        },
+        {
+          "id": "41301487",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301487",
+          "completed": false,
+          "title": "[SHAREDALL] S3 Replication",
+          "durationSeconds": 839
+        },
+        {
+          "id": "41301488",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301488",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Cross-Region Replication of an S3 Static Website",
+          "durationSeconds": 1192
+        },
+        {
+          "id": "41301489",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301489",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 PreSigned URLs",
+          "durationSeconds": 671
+        },
+        {
+          "id": "41301490",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301490",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Creating and using PresignedURLs",
+          "durationSeconds": 1103
+        },
+        {
+          "id": "41301491",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301491",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 Select and Glacier Select",
+          "durationSeconds": 333
+        },
+        {
+          "id": "41301492",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301492",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 Events",
+          "durationSeconds": 272
+        },
+        {
+          "id": "41301493",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301493",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 Access Logs",
+          "durationSeconds": 185
+        },
+        {
+          "id": "42834820",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42834820",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] S3 Object Lock",
+          "durationSeconds": 592
+        },
+        {
+          "id": "46092627",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/46092627",
+          "completed": false,
+          "title": "S3 Access Points",
+          "durationSeconds": 352
+        },
+        {
+          "id": "46092644",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/46092644",
+          "completed": false,
+          "title": "[DEMO] Multi-Region Access Points (MRAP)",
+          "durationSeconds": 1225
+        },
+        {
+          "id": "41301494",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301494",
+          "completed": false,
+          "title": "S3 Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "VIRTUAL PRIVATE CLOUD (VPC) BASICS",
+      "lessons": [
+        {
+          "id": "41301346",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301346",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] VPC Sizing and Structure - PART1",
+          "durationSeconds": 708
+        },
+        {
+          "id": "41301347",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301347",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] VPC Sizing and Structure - PART2",
+          "durationSeconds": 676
+        },
+        {
+          "id": "41301348",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301348",
+          "completed": false,
+          "title": "[SHAREDALL] Custom VPCs - PART1 - THEORY",
+          "durationSeconds": 610
+        },
+        {
+          "id": "45241150",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/45241150",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Custom VPCs - PART2 - DEMO [UPDATED20231129]",
+          "durationSeconds": 340
+        },
+        {
+          "id": "41301349",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301349",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] VPC Subnets",
+          "durationSeconds": 642
+        },
+        {
+          "id": "41301350",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301350",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Implement multi-tier VPC subnets [UPDATED20231129]",
+          "durationSeconds": 903
+        },
+        {
+          "id": "41301351",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301351",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] VPC Routing, Internet Gateway & Bastion Hosts",
+          "durationSeconds": 1055
+        },
+        {
+          "id": "41301352",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301352",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Configuring A4L public subnets and Jumpbox - PART1",
+          "durationSeconds": 825
+        },
+        {
+          "id": "41301353",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301353",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Configuring A4L public subnets and Jumpbox - PART2]",
+          "durationSeconds": 695
+        },
+        {
+          "id": "41301354",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301354",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Stateful vs Stateless Firewalls",
+          "durationSeconds": 844
+        },
+        {
+          "id": "41301355",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301355",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Network Access Control Lists (NACLs)",
+          "durationSeconds": 758
+        },
+        {
+          "id": "41301356",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301356",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Security Groups (SG)",
+          "durationSeconds": 708
+        },
+        {
+          "id": "41301357",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301357",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Network Address Translation (NAT) & NAT Gateway - PART1",
+          "durationSeconds": 823
+        },
+        {
+          "id": "41301358",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301358",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Network Address Translation (NAT) & NAT Gateway - PART2",
+          "durationSeconds": 668
+        },
+        {
+          "id": "42262547",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42262547",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Implementing private internet access using NAT Gateways",
+          "durationSeconds": 1165
+        },
+        {
+          "id": "41301361",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301361",
+          "completed": false,
+          "title": "VPC Basics Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "ELASTIC COMPUTE CLOUD (EC2) BASICS",
+      "lessons": [
+        {
+          "id": "41301314",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301314",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Virtualization 101",
+          "durationSeconds": 747
+        },
+        {
+          "id": "41301315",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301315",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] EC2 Architecture and Resilience",
+          "durationSeconds": 756
+        },
+        {
+          "id": "41301316",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301316",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] EC2 Instance Types - PART1",
+          "durationSeconds": 712
+        },
+        {
+          "id": "41301317",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301317",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] EC2 Instance Types - PART2",
+          "durationSeconds": 493
+        },
+        {
+          "id": "41301318",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301318",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] EC2 SSH vs EC2 Instance Connect",
+          "durationSeconds": 1026
+        },
+        {
+          "id": "41301319",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301319",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Storage Refresher",
+          "durationSeconds": 856
+        },
+        {
+          "id": "41301320",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301320",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Elastic Block Store (EBS) Service Architecture",
+          "durationSeconds": 523
+        },
+        {
+          "id": "41301321",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301321",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] EBS Volume Types - General Purpose",
+          "durationSeconds": 563
+        },
+        {
+          "id": "41301322",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301322",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] EBS Volume Types - Provisioned IOPS",
+          "durationSeconds": 376
+        },
+        {
+          "id": "41301323",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301323",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] EBS Volume Types - HDD-Based",
+          "durationSeconds": 272
+        },
+        {
+          "id": "41301324",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301324",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Instance Store Volumes - Architecture",
+          "durationSeconds": 540
+        },
+        {
+          "id": "41301325",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301325",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Choosing between the EC2 Instance Store and EBS",
+          "durationSeconds": 529
+        },
+        {
+          "id": "41301326",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301326",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Snapshots, Restore & Fast Snapshot Restore (FSR)",
+          "durationSeconds": 655
+        },
+        {
+          "id": "41301327",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301327",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] EBS Volumes - PART1",
+          "durationSeconds": 916
+        },
+        {
+          "id": "41301328",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301328",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] EBS Volumes - PART2",
+          "durationSeconds": 853
+        },
+        {
+          "id": "41301329",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301329",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] EBS Volumes - PART3",
+          "durationSeconds": 867
+        },
+        {
+          "id": "41301330",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301330",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] EBS Encryption",
+          "durationSeconds": 502
+        },
+        {
+          "id": "41301331",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301331",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Network Interfaces, Instance IPs and DNS",
+          "durationSeconds": 958
+        },
+        {
+          "id": "41301332",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301332",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Manual Install of Wordpress on EC2 - PART1",
+          "durationSeconds": 747
+        },
+        {
+          "id": "41301333",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301333",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Manual Install of Wordpress on EC2 - PART2",
+          "durationSeconds": 756
+        },
+        {
+          "id": "41301334",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301334",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Amazon Machine Images (AMI)",
+          "durationSeconds": 838
+        },
+        {
+          "id": "41301335",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301335",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Creating an Animals4life AMI - PART1",
+          "durationSeconds": 578
+        },
+        {
+          "id": "41301336",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301336",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Creating an Animals4life AMI - PART2",
+          "durationSeconds": 657
+        },
+        {
+          "id": "41301337",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301337",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Copying & Sharing an AMI",
+          "durationSeconds": 515
+        },
+        {
+          "id": "41301338",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301338",
+          "completed": false,
+          "title": "EC2 Purchase Options - PART1",
+          "durationSeconds": 562
+        },
+        {
+          "id": "41301339",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301339",
+          "completed": false,
+          "title": "EC2 Purchase Options - PART2",
+          "durationSeconds": 716
+        },
+        {
+          "id": "41301340",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301340",
+          "completed": false,
+          "title": "Reserved Instances - the rest",
+          "durationSeconds": 718
+        },
+        {
+          "id": "41301341",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301341",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Instance Status Checks & Auto Recovery",
+          "durationSeconds": 462
+        },
+        {
+          "id": "41301342",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301342",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Shutdown, Terminate & Termination Protection",
+          "durationSeconds": 340
+        },
+        {
+          "id": "41301343",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301343",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Horizontal & Vertical Scaling",
+          "durationSeconds": 684
+        },
+        {
+          "id": "41301344",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301344",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Instance Metadata [THEORY & DEMO]",
+          "durationSeconds": 946
+        },
+        {
+          "id": "41301345",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301345",
+          "completed": false,
+          "title": "EC2 Basics Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "CONTAINERS & ECS",
+      "lessons": [
+        {
+          "id": "41301611",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301611",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Introduction to Containers",
+          "durationSeconds": 1033
+        },
+        {
+          "id": "41301612",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301612",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Creating 'container of cats' Docker Image",
+          "durationSeconds": 1095
+        },
+        {
+          "id": "41301613",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301613",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] ECS - Concepts",
+          "durationSeconds": 626
+        },
+        {
+          "id": "41301614",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301614",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] ECS - Cluster Mode",
+          "durationSeconds": 789
+        },
+        {
+          "id": "41301615",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301615",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] - Deploying 'container of cats' using Fargate [UI UPDATES IN PROGRESS]",
+          "durationSeconds": 793
+        },
+        {
+          "id": "42264147",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42264147",
+          "completed": false,
+          "title": "Elastic Container Registry (ECR)",
+          "durationSeconds": 254
+        },
+        {
+          "id": "42219918",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42219918",
+          "completed": false,
+          "title": "[SHAREDALL] Kubernetes 101",
+          "durationSeconds": 687
+        },
+        {
+          "id": "42220586",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42220586",
+          "completed": false,
+          "title": "[SHAREDALL] Elastic Kubernetes Service (EKS) 101",
+          "durationSeconds": 374
+        },
+        {
+          "id": "41301616",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301616",
+          "completed": false,
+          "title": "Containers Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "ADVANCED EC2",
+      "lessons": [
+        {
+          "id": "41301595",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301595",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Bootstrapping EC2 using User Data",
+          "durationSeconds": 625
+        },
+        {
+          "id": "41301596",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301596",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Bootstrapping Wordpress Installation - PART1",
+          "durationSeconds": 900
+        },
+        {
+          "id": "41301597",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301597",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Bootstrapping Wordpress Installation - PART2",
+          "durationSeconds": 405
+        },
+        {
+          "id": "41301598",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301598",
+          "completed": false,
+          "title": "Enhanced Bootstrapping with CFN-INIT",
+          "durationSeconds": 712
+        },
+        {
+          "id": "41301599",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301599",
+          "completed": false,
+          "title": "[DEMO] CFN-INIT and CFN Creation Policies",
+          "durationSeconds": 749
+        },
+        {
+          "id": "41301600",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301600",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] EC2 Instance Roles & Profile",
+          "durationSeconds": 258
+        },
+        {
+          "id": "41301601",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301601",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Using EC2 Instance Roles",
+          "durationSeconds": 811
+        },
+        {
+          "id": "41301602",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301602",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] SSM Parameter Store",
+          "durationSeconds": 376
+        },
+        {
+          "id": "41301603",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301603",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Parameter Store",
+          "durationSeconds": 971
+        },
+        {
+          "id": "41301604",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301604",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] System and Application Logging on EC2",
+          "durationSeconds": 375
+        },
+        {
+          "id": "41301605",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301605",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Logging and Metrics with CloudWatch Agent-PART1",
+          "durationSeconds": 711
+        },
+        {
+          "id": "41301606",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301606",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Logging and Metrics with CloudWatch Agent-PART2",
+          "durationSeconds": 488
+        },
+        {
+          "id": "41301607",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301607",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] EC2 Placement Groups",
+          "durationSeconds": 869
+        },
+        {
+          "id": "41301608",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301608",
+          "completed": false,
+          "title": "Dedicated Hosts",
+          "durationSeconds": 536
+        },
+        {
+          "id": "41301609",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301609",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Enhanced Networking & EBS Optimized",
+          "durationSeconds": 417
+        },
+        {
+          "id": "41301610",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301610",
+          "completed": false,
+          "title": "Advanced EC2 Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "Route 53 - Global DNS",
+      "lessons": [
+        {
+          "id": "41301579",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301579",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] R53 Public Hosted Zones",
+          "durationSeconds": 388
+        },
+        {
+          "id": "41301580",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301580",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] R53 Private Hosted Zones",
+          "durationSeconds": 310
+        },
+        {
+          "id": "41301581",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301581",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CNAME vs R53 Alias",
+          "durationSeconds": 319
+        },
+        {
+          "id": "41301582",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301582",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Simple Routing",
+          "durationSeconds": 137
+        },
+        {
+          "id": "41301583",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301583",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] R53 Health Checks",
+          "durationSeconds": 761
+        },
+        {
+          "id": "41301584",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301584",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Failover Routing",
+          "durationSeconds": 113
+        },
+        {
+          "id": "41301585",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301585",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Using R53 and Failover Routing-PART1",
+          "durationSeconds": 1001
+        },
+        {
+          "id": "41301586",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301586",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Using R53 and Failover Routing-PART2",
+          "durationSeconds": 388
+        },
+        {
+          "id": "41301587",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301587",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Multi Value Routing",
+          "durationSeconds": 152
+        },
+        {
+          "id": "41301588",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301588",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Weighted Routing",
+          "durationSeconds": 204
+        },
+        {
+          "id": "41301589",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301589",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Latency Routing",
+          "durationSeconds": 164
+        },
+        {
+          "id": "41301590",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301590",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Geolocation Routing",
+          "durationSeconds": 302
+        },
+        {
+          "id": "41301591",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301591",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Geoproximity",
+          "durationSeconds": 290
+        },
+        {
+          "id": "41301592",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301592",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] R53 Interoperability",
+          "durationSeconds": 710
+        },
+        {
+          "id": "43460378",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/43460378",
+          "completed": false,
+          "title": "Implementing DNSSEC using Route53",
+          "durationSeconds": 1063
+        },
+        {
+          "id": "41301593",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301593",
+          "completed": false,
+          "title": "Route53 Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "Relational Database Service (RDS)",
+      "lessons": [
+        {
+          "id": "41301414",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301414",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Database Refresher & MODELS - PART1",
+          "durationSeconds": 531
+        },
+        {
+          "id": "41301415",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301415",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Database Refresher & MODELS - PART2",
+          "durationSeconds": 885
+        },
+        {
+          "id": "41301416",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301416",
+          "completed": false,
+          "title": "ACID vs BASE",
+          "durationSeconds": 662
+        },
+        {
+          "id": "41301417",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301417",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Databases on EC2",
+          "durationSeconds": 788
+        },
+        {
+          "id": "41301418",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301418",
+          "completed": false,
+          "title": "[ASSOCIATESHARED][DEMO] Splitting Wordpress Monolith => APP & DB",
+          "durationSeconds": 1081
+        },
+        {
+          "id": "41301419",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301419",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Relational Database Service (RDS) Architecture",
+          "durationSeconds": 699
+        },
+        {
+          "id": "41301420",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301420",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Migrating EC2 DB into RDS - PART1",
+          "durationSeconds": 1100
+        },
+        {
+          "id": "41301421",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301421",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Migrating EC2 DB into RDS - PART2",
+          "durationSeconds": 778
+        },
+        {
+          "id": "41301422",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301422",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Relational Database Service (RDS) MultiAZ - Instance and Cluster",
+          "durationSeconds": 714
+        },
+        {
+          "id": "41301423",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301423",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] RDS Automatic Backup, RDS Snapshots and Restore",
+          "durationSeconds": 532
+        },
+        {
+          "id": "41301424",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301424",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] RDS Read-Replicas",
+          "durationSeconds": 396
+        },
+        {
+          "id": "41301425",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301425",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] MultiAZ & Snapshot Restore with RDS - PART1",
+          "durationSeconds": 845
+        },
+        {
+          "id": "41301426",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301426",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] MultiAZ & Snapshot Restore with RDS - PART2",
+          "durationSeconds": 727
+        },
+        {
+          "id": "41301427",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301427",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] RDS Data Security",
+          "durationSeconds": 423
+        },
+        {
+          "id": "43672608",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/43672608",
+          "completed": false,
+          "title": "RDS Custom",
+          "durationSeconds": 322
+        },
+        {
+          "id": "41301428",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301428",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Aurora Architecture",
+          "durationSeconds": 824
+        },
+        {
+          "id": "41301431",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301431",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Aurora Serverless",
+          "durationSeconds": 592
+        },
+        {
+          "id": "41301433",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301433",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Aurora Global Database",
+          "durationSeconds": 308
+        },
+        {
+          "id": "41301434",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301434",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Multi-master writes",
+          "durationSeconds": 471
+        },
+        {
+          "id": "43591307",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/43591307",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Relational Database Service (RDS) - RDS Proxy",
+          "durationSeconds": 587
+        },
+        {
+          "id": "41301435",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301435",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Database Migration Service (DMS)",
+          "durationSeconds": 663
+        },
+        {
+          "id": "41301436",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301436",
+          "completed": false,
+          "title": "RDS Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "NETWORK STORAGE & DATA LIFECYCLE",
+      "lessons": [
+        {
+          "id": "41301664",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301664",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] EFS Architecture",
+          "durationSeconds": 545
+        },
+        {
+          "id": "41301665",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301665",
+          "completed": false,
+          "title": "[ASSOCIATESHARED][DEMO] Implementing EFS - PART1",
+          "durationSeconds": 531
+        },
+        {
+          "id": "41301666",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301666",
+          "completed": false,
+          "title": "[ASSOCIATESHARED][DEMO] Implementing EFS - PART2",
+          "durationSeconds": 692
+        },
+        {
+          "id": "41301667",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301667",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Using EFS with Wordpress",
+          "durationSeconds": 960
+        },
+        {
+          "id": "42205473",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42205473",
+          "completed": false,
+          "title": "AWS Backup",
+          "durationSeconds": 396
+        },
+        {
+          "id": "41301668",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301668",
+          "completed": false,
+          "title": "Network Storage Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "HA & SCALING",
+      "lessons": [
+        {
+          "id": "41301437",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301437",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Regional and Global AWS Architecture",
+          "durationSeconds": 642
+        },
+        {
+          "id": "41301438",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301438",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Evolution of the Elastic Load Balancer",
+          "durationSeconds": 250
+        },
+        {
+          "id": "41301439",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301439",
+          "completed": false,
+          "title": "[SHAREDALL] Elastic Load Balancer Architecture - PART1",
+          "durationSeconds": 618
+        },
+        {
+          "id": "41301440",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301440",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Elastic Load Balancer Architecture - PART2",
+          "durationSeconds": 752
+        },
+        {
+          "id": "41301441",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301441",
+          "completed": false,
+          "title": "[SHAREDALL] Application Load balancing (ALB) vs Network Load Balancing (NLB)",
+          "durationSeconds": 980
+        },
+        {
+          "id": "41301442",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301442",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Launch Configuration and Templates",
+          "durationSeconds": 240
+        },
+        {
+          "id": "41301443",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301443",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Auto-Scaling Groups",
+          "durationSeconds": 961
+        },
+        {
+          "id": "41301444",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301444",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] ASG Scaling Policies",
+          "durationSeconds": 623
+        },
+        {
+          "id": "41301445",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301445",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] ASG Lifecycle Hooks",
+          "durationSeconds": 281
+        },
+        {
+          "id": "41301446",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301446",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] ASG HealthCheck Comparison - EC2 vs ELB",
+          "durationSeconds": 218
+        },
+        {
+          "id": "41301447",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301447",
+          "completed": false,
+          "title": "SSL Offload & Session Stickiness",
+          "durationSeconds": 731
+        },
+        {
+          "id": "43242687",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/43242687",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Seeing Session Stickiness in Action",
+          "durationSeconds": 777
+        },
+        {
+          "id": "41301448",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301448",
+          "completed": false,
+          "title": "[AdvancedDemo] Architecture Evolution - STAGE1 - PART1",
+          "durationSeconds": 864
+        },
+        {
+          "id": "41301449",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301449",
+          "completed": false,
+          "title": "[AdvancedDemo] Architecture Evolution - STAGE1 - PART2",
+          "durationSeconds": 643
+        },
+        {
+          "id": "41301450",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301450",
+          "completed": false,
+          "title": "[AdvancedDemo] Architecture Evolution - STAGE2",
+          "durationSeconds": 778
+        },
+        {
+          "id": "41301451",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301451",
+          "completed": false,
+          "title": "[AdvancedDemo] Architecture Evolution - STAGE3",
+          "durationSeconds": 1170
+        },
+        {
+          "id": "41301452",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301452",
+          "completed": false,
+          "title": "[AdvancedDemo] Architecture Evolution - STAGE4",
+          "durationSeconds": 1084
+        },
+        {
+          "id": "41301453",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301453",
+          "completed": false,
+          "title": "[AdvancedDemo] Architecture Evolution - STAGE 5 - PART1",
+          "durationSeconds": 691
+        },
+        {
+          "id": "41301454",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301454",
+          "completed": false,
+          "title": "[AdvancedDemo] Architecture Evolution - STAGE 5 - PART2",
+          "durationSeconds": 896
+        },
+        {
+          "id": "41301455",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301455",
+          "completed": false,
+          "title": "[AdvancedDemo] Architecture Evolution - STAGE6",
+          "durationSeconds": 348
+        },
+        {
+          "id": "41301456",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301456",
+          "completed": false,
+          "title": "Gateway Load Balancer",
+          "durationSeconds": 820
+        },
+        {
+          "id": "41301457",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301457",
+          "completed": false,
+          "title": "HA and Scaling Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "SERVERLESS AND APPLICATION SERVICES",
+      "lessons": [
+        {
+          "id": "41301389",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301389",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Architecture Deep Dive - PART1",
+          "durationSeconds": 532
+        },
+        {
+          "id": "41301390",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301390",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Architecture Deep Dive - PART2",
+          "durationSeconds": 789
+        },
+        {
+          "id": "41301391",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301391",
+          "completed": false,
+          "title": "[SHAREDALL] AWS Lambda - PART1",
+          "durationSeconds": 685
+        },
+        {
+          "id": "41301392",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301392",
+          "completed": false,
+          "title": "[SHAREDALL] AWS Lambda - PART2",
+          "durationSeconds": 839
+        },
+        {
+          "id": "41301393",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301393",
+          "completed": false,
+          "title": "[SHAREDALL] AWS Lambda - PART3",
+          "durationSeconds": 1023
+        },
+        {
+          "id": "41301394",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301394",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudWatchEvents and EventBridge",
+          "durationSeconds": 414
+        },
+        {
+          "id": "41301395",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301395",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Automated EC2 Control using Lambda and Events - PART1",
+          "durationSeconds": 824
+        },
+        {
+          "id": "41301397",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301397",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Automated EC2 Control using Lambda and Events - PART2",
+          "durationSeconds": 1129
+        },
+        {
+          "id": "41301398",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301398",
+          "completed": false,
+          "title": "Serverless Architecture",
+          "durationSeconds": 776
+        },
+        {
+          "id": "41301399",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301399",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Simple Notification Service",
+          "durationSeconds": 469
+        },
+        {
+          "id": "41301400",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301400",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Step Functions",
+          "durationSeconds": 969
+        },
+        {
+          "id": "41301401",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301401",
+          "completed": false,
+          "title": "[SHAREDALL] API Gateway 101",
+          "durationSeconds": 987
+        },
+        {
+          "id": "41301402",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301402",
+          "completed": false,
+          "title": "[MINIPROJECT] Build A Serverless App - Pet-Cuddle-o-Tron - PART1",
+          "durationSeconds": 301
+        },
+        {
+          "id": "41301403",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301403",
+          "completed": false,
+          "title": "[MINIPROJECT] Build A Serverless App - Pet-Cuddle-o-Tron - PART2",
+          "durationSeconds": 504
+        },
+        {
+          "id": "41301404",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301404",
+          "completed": false,
+          "title": "[MINIPROJECT] Build A Serverless App - Pet-Cuddle-o-Tron - PART3",
+          "durationSeconds": 746
+        },
+        {
+          "id": "41301405",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301405",
+          "completed": false,
+          "title": "[MINIPROJECT] Build A Serverless App - Pet-Cuddle-o-Tron - PART4",
+          "durationSeconds": 765
+        },
+        {
+          "id": "41301406",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301406",
+          "completed": false,
+          "title": "[MINIPROJECT] Build A Serverless App - Pet-Cuddle-o-Tron - PART5",
+          "durationSeconds": 811
+        },
+        {
+          "id": "41301407",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301407",
+          "completed": false,
+          "title": "[MINIPROJECT] Build A Serverless App - Pet-Cuddle-o-Tron - PART6",
+          "durationSeconds": 158
+        },
+        {
+          "id": "41301408",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301408",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Simple Queue Service",
+          "durationSeconds": 930
+        },
+        {
+          "id": "42318767",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42318767",
+          "completed": false,
+          "title": "SQS Standard vs FIFO Queues",
+          "durationSeconds": 209
+        },
+        {
+          "id": "42318828",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42318828",
+          "completed": false,
+          "title": "SQS Delay Queues",
+          "durationSeconds": 278
+        },
+        {
+          "id": "42318772",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42318772",
+          "completed": false,
+          "title": "SQS Dead-Letter Queues",
+          "durationSeconds": 257
+        },
+        {
+          "id": "41301409",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301409",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Kinesis Data Streams",
+          "durationSeconds": 472
+        },
+        {
+          "id": "41301410",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301410",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Kinesis Data Firehose",
+          "durationSeconds": 551
+        },
+        {
+          "id": "41301411",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301411",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Kinesis Data Analytics",
+          "durationSeconds": 531
+        },
+        {
+          "id": "42197321",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42197321",
+          "completed": false,
+          "title": "Kinesis Video Streams",
+          "durationSeconds": 309
+        },
+        {
+          "id": "41301412",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301412",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Amazon Cognito - User and Identity Pools",
+          "durationSeconds": 884
+        },
+        {
+          "id": "42197048",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42197048",
+          "completed": false,
+          "title": "AWS Glue 101",
+          "durationSeconds": 383
+        },
+        {
+          "id": "42197157",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42197157",
+          "completed": false,
+          "title": "Amazon MQ 101",
+          "durationSeconds": 495
+        },
+        {
+          "id": "42197158",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42197158",
+          "completed": false,
+          "title": "Amazon AppFlow",
+          "durationSeconds": 210
+        },
+        {
+          "id": "41301413",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301413",
+          "completed": false,
+          "title": "Serverless and App Services Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "GLOBAL CONTENT DELIVERY AND OPTIMIZATION",
+      "lessons": [
+        {
+          "id": "41301521",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301521",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Cloudfront Architecture",
+          "durationSeconds": 896
+        },
+        {
+          "id": "41301522",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301522",
+          "completed": false,
+          "title": "[SHAREDALL] CloudFront (CF) - Behaviours",
+          "durationSeconds": 561
+        },
+        {
+          "id": "41301523",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301523",
+          "completed": false,
+          "title": "[SHAREDALL] CloudFront - TTL and Invalidations",
+          "durationSeconds": 828
+        },
+        {
+          "id": "41301524",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301524",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] ACM",
+          "durationSeconds": 681
+        },
+        {
+          "id": "41301525",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301525",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Cloudfront and SSL/TLS",
+          "durationSeconds": 899
+        },
+        {
+          "id": "41301526",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301526",
+          "completed": false,
+          "title": "[SHAREDALL] CloudFront (CF) - Origin Types & Origin Architecture",
+          "durationSeconds": 620
+        },
+        {
+          "id": "41301527",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301527",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] CloudFront (CF) - Adding a CDN to a static Website-PART1",
+          "durationSeconds": 983
+        },
+        {
+          "id": "41301528",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301528",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] CloudFront (CF) - Adding a CDN to a static Website-PART2",
+          "durationSeconds": 744
+        },
+        {
+          "id": "41301529",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301529",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] CloudFront (CF) - Adding an Alternate CNAME and SSL",
+          "durationSeconds": 672
+        },
+        {
+          "id": "41301530",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301530",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Securing CF and S3 using OAI",
+          "durationSeconds": 530
+        },
+        {
+          "id": "42624858",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42624858",
+          "completed": false,
+          "title": "CloudFront - Private Distribution & Behaviours",
+          "durationSeconds": 469
+        },
+        {
+          "id": "41301531",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301531",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] CloudFront (CF) - Using Origin Access Control (OAC) (new version of OAI)",
+          "durationSeconds": 681
+        },
+        {
+          "id": "41301532",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301532",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Lambda@Edge",
+          "durationSeconds": 483
+        },
+        {
+          "id": "41301533",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301533",
+          "completed": false,
+          "title": "Global Accelerator",
+          "durationSeconds": 629
+        },
+        {
+          "id": "41301534",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301534",
+          "completed": false,
+          "title": "CDN and Optimisation Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "ADVANCED VPC Networking",
+      "lessons": [
+        {
+          "id": "41301379",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301379",
+          "completed": false,
+          "title": "VPC Flow Logs",
+          "durationSeconds": 596
+        },
+        {
+          "id": "41301380",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301380",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] Egress-Only Internet gateway",
+          "durationSeconds": 406
+        },
+        {
+          "id": "41301381",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301381",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] VPC Endpoints (Gateway)",
+          "durationSeconds": 674
+        },
+        {
+          "id": "41301382",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301382",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] VPC Endpoints (Interface)",
+          "durationSeconds": 686
+        },
+        {
+          "id": "41301383",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301383",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] VPC Endpoints - Interface - PART1",
+          "durationSeconds": 719
+        },
+        {
+          "id": "41301384",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301384",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] VPC Endpoints - Gateway - PART2",
+          "durationSeconds": 599
+        },
+        {
+          "id": "41301385",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301385",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] Egress-Only Internet Gateway - PART3",
+          "durationSeconds": 477
+        },
+        {
+          "id": "41301386",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301386",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] VPC Peering",
+          "durationSeconds": 544
+        },
+        {
+          "id": "41301387",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301387",
+          "completed": false,
+          "title": "[SHAREDALL] [DEMO] VPC Peering",
+          "durationSeconds": 1358
+        },
+        {
+          "id": "41301388",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301388",
+          "completed": false,
+          "title": "Advanced VPC Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "HYBRID ENVIRONMENTS AND MIGRATION",
+      "lessons": [
+        {
+          "id": "41301495",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301495",
+          "completed": false,
+          "title": "Border Gateway Protocol 101",
+          "durationSeconds": 1049
+        },
+        {
+          "id": "42306709",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42306709",
+          "completed": false,
+          "title": "IPSec VPN Fundamentals",
+          "durationSeconds": 894
+        },
+        {
+          "id": "41301496",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301496",
+          "completed": false,
+          "title": "AWS Site-to-Site VPN",
+          "durationSeconds": 1085
+        },
+        {
+          "id": "42471483",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42471483",
+          "completed": false,
+          "title": "[DEMO] Simple Site2Site VPN - STAGE0 - SETUP",
+          "durationSeconds": 292
+        },
+        {
+          "id": "42471487",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42471487",
+          "completed": false,
+          "title": "[DEMO] Simple Site2Site VPN - STAGE1 - AWS VPN",
+          "durationSeconds": 601
+        },
+        {
+          "id": "42471491",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42471491",
+          "completed": false,
+          "title": "[DEMO] Simple Site2Site VPN - STAGE2 - onprep pfSense Config",
+          "durationSeconds": 1029
+        },
+        {
+          "id": "42471494",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42471494",
+          "completed": false,
+          "title": "[DEMO] Simple Site2Site VPN - STAGE3 - Routing & Security",
+          "durationSeconds": 629
+        },
+        {
+          "id": "42471502",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42471502",
+          "completed": false,
+          "title": "[DEMO] Simple Site2Site VPN - STAGE4 - Testing",
+          "durationSeconds": 342
+        },
+        {
+          "id": "42471504",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42471504",
+          "completed": false,
+          "title": "[DEMO] Simple Site2Site VPN - STAGE5 - Cleanup",
+          "durationSeconds": 110
+        },
+        {
+          "id": "42307217",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42307217",
+          "completed": false,
+          "title": "Direct Connect (DX) Concepts",
+          "durationSeconds": 577
+        },
+        {
+          "id": "41301500",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301500",
+          "completed": false,
+          "title": "Direct Connect (DX) Resilience",
+          "durationSeconds": 830
+        },
+        {
+          "id": "46276780",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/46276780",
+          "completed": false,
+          "title": "Direct Connect (DX) - Public VIF + VPN (Encryption)",
+          "durationSeconds": 403
+        },
+        {
+          "id": "41301501",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301501",
+          "completed": false,
+          "title": "Transit Gateway",
+          "durationSeconds": 626
+        },
+        {
+          "id": "42306850",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42306850",
+          "completed": false,
+          "title": "Storage Gateway - Volume",
+          "durationSeconds": 855
+        },
+        {
+          "id": "42306854",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42306854",
+          "completed": false,
+          "title": "Storage Gateway - Tape (VTL)",
+          "durationSeconds": 731
+        },
+        {
+          "id": "42306857",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42306857",
+          "completed": false,
+          "title": "Storage Gateway - File",
+          "durationSeconds": 735
+        },
+        {
+          "id": "41301505",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301505",
+          "completed": false,
+          "title": "Snowball / Edge / Snowmobile [NEW VERSION COMING SOON]",
+          "durationSeconds": 647
+        },
+        {
+          "id": "41301506",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301506",
+          "completed": false,
+          "title": "Directory Service",
+          "durationSeconds": 950
+        },
+        {
+          "id": "41301507",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301507",
+          "completed": false,
+          "title": "DataSync",
+          "durationSeconds": 567
+        },
+        {
+          "id": "41301508",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301508",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] FSx for Windows Servers",
+          "durationSeconds": 692
+        },
+        {
+          "id": "41301509",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301509",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] FSx For Lustre",
+          "durationSeconds": 837
+        },
+        {
+          "id": "42133201",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42133201",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] AWS Transfer Family",
+          "durationSeconds": 624
+        },
+        {
+          "id": "41301511",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301511",
+          "completed": false,
+          "title": "Hybrid and Migration Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "SECURITY, DEPLOYMENT & OPERATIONS",
+      "lessons": [
+        {
+          "id": "41301513",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301513",
+          "completed": false,
+          "title": "AWS Secrets Manager",
+          "durationSeconds": 464
+        },
+        {
+          "id": "42087682",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42087682",
+          "completed": false,
+          "title": "Application Layer (L7) Firewall",
+          "durationSeconds": 464
+        },
+        {
+          "id": "42087577",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42087577",
+          "completed": false,
+          "title": "Web Application Firewall (WAF), WEBACLs, Rule Groups and Rules",
+          "durationSeconds": 1158
+        },
+        {
+          "id": "42566530",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42566530",
+          "completed": false,
+          "title": "AWS Shield",
+          "durationSeconds": 587
+        },
+        {
+          "id": "41301515",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301515",
+          "completed": false,
+          "title": "CloudHSM",
+          "durationSeconds": 876
+        },
+        {
+          "id": "41301516",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301516",
+          "completed": false,
+          "title": "AWS Config",
+          "durationSeconds": 374
+        },
+        {
+          "id": "41301517",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301517",
+          "completed": false,
+          "title": "Amazon Macie",
+          "durationSeconds": 724
+        },
+        {
+          "id": "45904487",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/45904487",
+          "completed": false,
+          "title": "[DEMO] Amazon Macie",
+          "durationSeconds": 935
+        },
+        {
+          "id": "41301518",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301518",
+          "completed": false,
+          "title": "Amazon Inspector",
+          "durationSeconds": 388
+        },
+        {
+          "id": "41301519",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301519",
+          "completed": false,
+          "title": "Amazon Guardduty",
+          "durationSeconds": 254
+        },
+        {
+          "id": "41301520",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301520",
+          "completed": false,
+          "title": "Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "Infrastructure as Code (CloudFormation)",
+      "lessons": [
+        {
+          "id": "41301535",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301535",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Physical & Logical Resources",
+          "durationSeconds": 450
+        },
+        {
+          "id": "41301536",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301536",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Simple Non Portable Template - PART1",
+          "durationSeconds": 628
+        },
+        {
+          "id": "41301537",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301537",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Simple Non Portable Template - PART2",
+          "durationSeconds": 688
+        },
+        {
+          "id": "41301538",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301538",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Template and Pseudo Parameters",
+          "durationSeconds": 413
+        },
+        {
+          "id": "41301539",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301539",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Intrinsic Functions",
+          "durationSeconds": 868
+        },
+        {
+          "id": "41301540",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301540",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Mappings",
+          "durationSeconds": 270
+        },
+        {
+          "id": "41301541",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301541",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Outputs",
+          "durationSeconds": 217
+        },
+        {
+          "id": "41301542",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301542",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] Template v2 - Portable",
+          "durationSeconds": 814
+        },
+        {
+          "id": "41301543",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301543",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Conditions",
+          "durationSeconds": 444
+        },
+        {
+          "id": "41301544",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301544",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation DependsOn",
+          "durationSeconds": 434
+        },
+        {
+          "id": "41301545",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301545",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Wait Conditions & cfn-signal",
+          "durationSeconds": 712
+        },
+        {
+          "id": "41301546",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301546",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Nested Stacks",
+          "durationSeconds": 835
+        },
+        {
+          "id": "41301547",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301547",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Cross-Stack References",
+          "durationSeconds": 605
+        },
+        {
+          "id": "41301548",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301548",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Stack Sets",
+          "durationSeconds": 552
+        },
+        {
+          "id": "41301549",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301549",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Deletion Policy",
+          "durationSeconds": 324
+        },
+        {
+          "id": "41301550",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301550",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Stack Roles",
+          "durationSeconds": 407
+        },
+        {
+          "id": "41301551",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301551",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Init (CFN-INIT)",
+          "durationSeconds": 528
+        },
+        {
+          "id": "41301552",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301552",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation cfn-hup",
+          "durationSeconds": 253
+        },
+        {
+          "id": "41301553",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301553",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] wait conditions, cfnsignal, cfninit and cfnhup-PART1",
+          "durationSeconds": 771
+        },
+        {
+          "id": "41301554",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301554",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] wait conditions, cfnsignal, cfninit and cfnhup-PART2",
+          "durationSeconds": 882
+        },
+        {
+          "id": "41301555",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301555",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation ChangeSets [NEW VERSION COMING SOON]",
+          "durationSeconds": 663
+        },
+        {
+          "id": "41301556",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301556",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] CloudFormation Custom Resources",
+          "durationSeconds": 663
+        },
+        {
+          "id": "41301557",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301557",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] CloudFormation Custom Resources-PART1",
+          "durationSeconds": 552
+        },
+        {
+          "id": "41301558",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301558",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] [DEMO] CloudFormation Custom Resources-PART2",
+          "durationSeconds": 807
+        }
+      ]
+    },
+    {
+      "title": "NOSQL Databases & DynamoDB",
+      "lessons": [
+        {
+          "id": "41301559",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301559",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] DynamoDB - Architecture",
+          "durationSeconds": 649
+        },
+        {
+          "id": "41301560",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301560",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] DynamoDB - Operations, Consistency and Performance-PART1",
+          "durationSeconds": 786
+        },
+        {
+          "id": "41301561",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301561",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] DynamoDB - Operations, Consistency and Performance-PART2",
+          "durationSeconds": 684
+        },
+        {
+          "id": "41301562",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301562",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] DynamoDB Local and Global Secondary Indexes",
+          "durationSeconds": 755
+        },
+        {
+          "id": "41301563",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301563",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] DynamoDB - Streams & Lambda Triggers",
+          "durationSeconds": 550
+        },
+        {
+          "id": "41301564",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301564",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] DynamoDB - Global Tables",
+          "durationSeconds": 309
+        },
+        {
+          "id": "41301565",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301565",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] DynamoDB - Accelerator (DAX)",
+          "durationSeconds": 658
+        },
+        {
+          "id": "42316057",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42316057",
+          "completed": false,
+          "title": "[ASSOCIATESHARED] DynamoDB - TTL",
+          "durationSeconds": 289
+        },
+        {
+          "id": "41301566",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301566",
+          "completed": false,
+          "title": "Amazon Athena",
+          "durationSeconds": 499
+        },
+        {
+          "id": "41301567",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301567",
+          "completed": false,
+          "title": "[DEMO] Athena Demo - PART1",
+          "durationSeconds": 811
+        },
+        {
+          "id": "41301568",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301568",
+          "completed": false,
+          "title": "[DEMO] Athena Demo - PART2",
+          "durationSeconds": 697
+        },
+        {
+          "id": "41301569",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301569",
+          "completed": false,
+          "title": "Elasticache",
+          "durationSeconds": 771
+        },
+        {
+          "id": "41301570",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301570",
+          "completed": false,
+          "title": "Redshift Architecture",
+          "durationSeconds": 692
+        },
+        {
+          "id": "41301571",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301571",
+          "completed": false,
+          "title": "Redshift DR and Resilience",
+          "durationSeconds": 220
+        },
+        {
+          "id": "41301572",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301572",
+          "completed": false,
+          "title": "NoSQL Section Quiz",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "Machine Learning 101",
+      "lessons": [
+        {
+          "id": "42157338",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42157338",
+          "completed": false,
+          "title": "Amazon Comprehend",
+          "durationSeconds": 448
+        },
+        {
+          "id": "42177865",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42177865",
+          "completed": false,
+          "title": "Amazon Kendra",
+          "durationSeconds": 300
+        },
+        {
+          "id": "42177845",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42177845",
+          "completed": false,
+          "title": "Amazon Lex",
+          "durationSeconds": 351
+        },
+        {
+          "id": "42176865",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42176865",
+          "completed": false,
+          "title": "Amazon Polly",
+          "durationSeconds": 244
+        },
+        {
+          "id": "42157339",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42157339",
+          "completed": false,
+          "title": "Amazon Rekognition",
+          "durationSeconds": 258
+        },
+        {
+          "id": "42176882",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42176882",
+          "completed": false,
+          "title": "Amazon Textract",
+          "durationSeconds": 522
+        },
+        {
+          "id": "42176908",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42176908",
+          "completed": false,
+          "title": "Amazon Transcribe",
+          "durationSeconds": 295
+        },
+        {
+          "id": "42177031",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42177031",
+          "completed": false,
+          "title": "Amazon Translate",
+          "durationSeconds": 272
+        },
+        {
+          "id": "42194099",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42194099",
+          "completed": false,
+          "title": "Amazon Forecast 101",
+          "durationSeconds": 244
+        },
+        {
+          "id": "42194142",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42194142",
+          "completed": false,
+          "title": "Amazon Fraud Detector",
+          "durationSeconds": 214
+        },
+        {
+          "id": "42194151",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42194151",
+          "completed": false,
+          "title": "Amazon SageMaker",
+          "durationSeconds": 339
+        }
+      ]
+    },
+    {
+      "title": "Other Services & Features",
+      "lessons": [
+        {
+          "id": "42194165",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/42194165",
+          "completed": false,
+          "title": "AWS Local Zones",
+          "durationSeconds": 532
+        }
+      ]
+    },
+    {
+      "title": "EXAM",
+      "lessons": [
+        {
+          "id": "41301574",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301574",
+          "completed": false,
+          "title": "[SHAREDALL] General AWS Exam Technique - 3 Phase Approach",
+          "durationSeconds": 536
+        },
+        {
+          "id": "41301575",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301575",
+          "completed": false,
+          "title": "[SHAREDALL] General AWS Question Technique - PART1",
+          "durationSeconds": 852
+        },
+        {
+          "id": "41301576",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301576",
+          "completed": false,
+          "title": "[SHAREDALL] General AWS Question Technique - PART2",
+          "durationSeconds": 541
+        },
+        {
+          "id": "41301577",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301577",
+          "completed": false,
+          "title": "Practice Exam #1",
+          "durationSeconds": null
+        },
+        {
+          "id": "41301578",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301578",
+          "completed": false,
+          "title": "Practice Exam #2",
+          "durationSeconds": null
+        }
+      ]
+    },
+    {
+      "title": "Finishing Up",
+      "lessons": [
+        {
+          "id": "41301573",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/41301573",
+          "completed": false,
+          "title": "Thanks! and a favour",
+          "durationSeconds": 195
+        },
+        {
+          "id": "49075046",
+          "url": "/courses/aws-certified-solutions-architect-associate-saa-c03/lectures/49075046",
+          "completed": false,
+          "title": "COURSE UPGRADES - SAVE $ WHEN ADDING MORE COURSES",
+          "durationSeconds": null
+        }
+      ]
+    }
+  ]
+}
