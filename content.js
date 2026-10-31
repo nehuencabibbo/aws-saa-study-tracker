@@ -202,6 +202,12 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     return;
   }
 
+  if (message?.type === "CELEBRATE_DAILY_GOAL") {
+    celebrateGoal();
+    sendResponse({ ok: true });
+    return;
+  }
+
   if (message?.type === "REQUEST_SNAPSHOT") {
     const snapshot = scrapeCourse("popup refresh");
     if (!snapshot) {

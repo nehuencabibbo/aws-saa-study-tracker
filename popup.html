@@ -24,12 +24,14 @@
           <span class="daily-percent" id="today-percent">—</span>
         </div>
         <div class="daily-heading">
-          <h2 id="daily-heading">Meta diaria</h2>
-          <span class="sun-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="8.25" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M12 7v5l3.2 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+          <h2 id="daily-heading"><span class="goal-emoji" aria-hidden="true">🎯</span>Meta diaria</h2>
+          <span class="celebrate-tooltip-wrap" id="celebrate-tooltip" tabindex="0" role="group" aria-label="Disponible solo al alcanzar el 100% de la meta diaria." data-tooltip="Disponible solo al alcanzar el 100% de la meta diaria.">
+            <button class="celebrate-button" id="celebrate-button" type="button" aria-label="Confeti: se habilita al alcanzar el 100% de la meta diaria" disabled>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.64 5.64l2.12 2.12m8.48 8.48 2.12 2.12m0-12.72-2.12 2.12m-8.48 8.48-2.12 2.12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="m12 7 1.4 3.6L17 12l-3.6 1.4L12 17l-1.4-3.6L7 12l3.6-1.4L12 7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </button>
           </span>
         </div>
         <div class="progress-copy">

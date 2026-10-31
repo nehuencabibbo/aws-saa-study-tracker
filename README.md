@@ -33,6 +33,6 @@ Si actualizás los archivos de una extensión ya cargada, usá **Recargar** en `
 - El primer escaneo ocurre al cargar la página del curso. Abrir el popup solo muestra los datos guardados; **Actualizar** vuelve a leer el contenedor a pedido. Mientras la página está abierta, un observador detecta cambios del sidebar y actualiza el progreso automáticamente.
 - Las lecciones que ya aparecen completas en el catálogo inicial se toman como progreso histórico. Si la primera lectura encuentra nuevas lecciones completadas desde ese catálogo, también las acredita en el día actual.
 - Los cuestionarios y avisos sin duración aparecen en el conteo de lecciones, pero no suman minutos.
-- Los datos se guardan localmente en el almacenamiento de Chrome. El confeti aparece sobre la página del curso cuando una lección completada hace que alcances la meta del día.
+- Los datos se guardan localmente en el almacenamiento de Chrome. El confeti aparece sobre la página del curso cuando una lección completada hace que alcances la meta del día; el botón del popup se habilita al llegar al 100% para volver a lanzarlo.
 
 El script se ejecuta en las rutas `/courses/*` de `learn.cantrill.io`, pero solo procesa el curso SAA-C03 con ID `1820301`; no mezcla otros cursos ni accede a credenciales.

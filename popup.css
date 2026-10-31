@@ -52,9 +52,15 @@ h1 { margin: 0; font-size: 18px; line-height: 1.2; letter-spacing: -.35px; }
 .section-topline .eyebrow { display: flex; align-items: center; gap: 7px; color: #345a74; }
 .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--daily-fill); }
 .daily-percent { padding: 5px 8px; border-radius: 999px; background: var(--daily-tint); color: #294d66; font-size: 12px; font-weight: 750; font-variant-numeric: tabular-nums; }
-.daily-heading h2 { margin: 0; font-size: 17px; letter-spacing: -.3px; }
-.sun-icon { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 10px; background: var(--daily-tint); color: #345a74; }
-.sun-icon svg { width: 19px; height: 19px; }
+.daily-heading h2 { display: flex; align-items: center; gap: 7px; margin: 0; font-size: 17px; letter-spacing: -.3px; }
+.goal-emoji { font-size: 17px; line-height: 1; }
+.celebrate-tooltip-wrap { position: relative; flex: none; display: inline-flex; }
+.celebrate-tooltip-wrap::after { position: absolute; z-index: 20; top: calc(100% + 8px); right: 0; width: 205px; padding: 8px 10px; border: 1px solid #29445d; border-radius: 8px; background: #15283a; color: #fff; content: attr(data-tooltip); font-size: 11px; font-weight: 550; line-height: 1.4; text-align: left; box-shadow: 0 5px 14px #15283a2e; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .15s ease; }
+.celebrate-tooltip-wrap:hover::after, .celebrate-tooltip-wrap:focus-within::after { opacity: 1; visibility: visible; }
+.celebrate-button { width: 34px; height: 34px; display: grid; place-items: center; padding: 0; border: 1px solid #a9bac8; border-radius: 10px; background: #fff; color: #284a65; cursor: pointer; transition: background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease; }
+.celebrate-button svg { width: 19px; height: 19px; }
+.celebrate-button:disabled { border-color: #d4dde5; background: #edf1f4; color: #8593a0; cursor: not-allowed; pointer-events: none; }
+.celebrate-button:not(:disabled):hover { transform: translateY(-1px); border-color: #345f7d; background: #eaf1f6; color: #18344e; }
 .progress-copy { margin: 13px 0 9px; align-items: baseline; }
 .progress-copy strong { font-size: 27px; line-height: 1; letter-spacing: -.8px; font-variant-numeric: tabular-nums; }
 .progress-copy span { color: var(--muted); font-size: 12px; }

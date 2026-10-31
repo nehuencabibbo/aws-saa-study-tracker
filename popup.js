@@ -5,6 +5,8 @@ const elements = {
   dailyFill: document.querySelector("#daily-fill"),
   progressTrack: document.querySelector(".progress-track"),
   goalCaption: document.querySelector("#goal-caption"),
+  celebrateButton: document.querySelector("#celebrate-button"),
+  celebrateTooltip: document.querySelector("#celebrate-tooltip"),
   totalPercent: document.querySelector("#total-percent"),
   totalProgress: document.querySelector("#total-progress"),
   totalDuration: document.querySelector("#total-duration"),
@@ -245,6 +247,15 @@ function updateView(state) {
     elements.goalCaption.textContent = `Te faltan ${formatPositiveTime(dailyRemainingSeconds)} de video para la meta de hoy · ${videosToday} ${videosToday === 1 ? "lección completa" : "lecciones completas"}.`;
   }
   elements.goalCaption.classList.toggle("done", reached || courseComplete);
+  const celebrateTooltip = reached
+    ? "Meta diaria al 100% · tocá para lanzar confeti otra vez."
+    : "Disponible solo al alcanzar el 100% de la meta diaria.";
+  elements.celebrateButton.disabled = !reached;
+  elements.celebrateButton.setAttribute("aria-label", reached
+    ? "Lanzar confeti: meta diaria completada"
+    : "Confeti disponible solo al alcanzar el 100% de la meta diaria");
+  elements.celebrateTooltip.dataset.tooltip = celebrateTooltip;
+  elements.celebrateTooltip.setAttribute("aria-label", celebrateTooltip);
   const totalProgressPercent = Math.floor(totalProgress);
   elements.totalPercent.textContent = `${totalProgressPercent}%`;
   elements.totalProgress.textContent = `${formatTime(completedCourseSeconds)} vistos`;
@@ -363,6 +374,25 @@ elements.refreshButton.addEventListener("click", async () => {
   } finally {
     elements.refreshButton.disabled = false;
     elements.refreshButton.innerHTML = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.2 6A5.5 5.5 0 0 0 3.3 4.3L2.2 5.5M2.2 5.5V2.8m0 2.7H5M2.8 10A5.5 5.5 0 0 0 12.7 11.7l1.1-1.2m0 0v2.7m0-2.7H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Actualizar';
+  }
+});
+
+elements.celebrateButton.addEventListener("click", async () => {
+  if (elements.celebrateButton.disabled) return;
+  try {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (tab?.id == null) throw new Error("No se encontró una pestaña activa.");
+    const response = await chrome.tabs.sendMessage(tab.id, { type: "CELEBRATE_DAILY_GOAL" });
+    if (!response?.ok) throw new Error("Abrí una lección del curso para mostrar el confeti.");
+  } catch (error) {
+    console.error(`${LOG_PREFIX} No se pudo mostrar el confeti en la pestaña activa.`, {
+      message: error?.message || String(error),
+    });
+    elements.celebrateTooltip.dataset.tooltip = "Abrí una lección de learn.cantrill.io para mostrar el confeti.";
+    elements.celebrateTooltip.setAttribute("aria-label", elements.celebrateTooltip.dataset.tooltip);
+    setTimeout(() => {
+      if (latestState) updateView(latestState);
+    }, 3500);
   }
 });
 
