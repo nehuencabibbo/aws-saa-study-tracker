@@ -7,6 +7,7 @@ let lastScanLogKey = "";
 let lastScanDiagnostic = null;
 let observer = null;
 let extensionContextInvalidated = false;
+let celebrationOverlay = null;
 const completionRetryTimers = new Set();
 
 function errorDetails(error) {
@@ -206,25 +207,32 @@ function containsSidebar(node) {
 }
 
 function celebrateGoal() {
-  if (document.querySelector(".aws-saa-tracker-celebration")) return;
-  const style = document.createElement("style");
-  style.textContent = `
-    .aws-saa-tracker-celebration{position:fixed;inset:0;z-index:2147483647;pointer-events:none;overflow:hidden;font-family:system-ui,sans-serif}
-    .aws-saa-tracker-banner{position:absolute;top:24px;left:50%;transform:translateX(-50%);padding:14px 22px;border-radius:999px;background:#142b40;color:white;font-size:16px;font-weight:700;box-shadow:0 12px 36px #15283a66;animation:aws-saa-banner-in .45s ease-out both}
-    .aws-saa-tracker-piece{position:absolute;top:-18px;width:9px;height:14px;border-radius:3px;animation:aws-saa-fall var(--fall-time) linear var(--delay) forwards;left:var(--left);background:var(--color);transform:rotate(var(--spin))}
-    @keyframes aws-saa-fall{to{top:110vh;transform:translateX(var(--drift)) rotate(calc(var(--spin) + 720deg));opacity:.8}}
-    @keyframes aws-saa-banner-in{from{opacity:0;top:0}to{opacity:1;top:24px}}
-    @media(prefers-reduced-motion:reduce){.aws-saa-tracker-piece{animation-duration:1ms!important}.aws-saa-tracker-banner{animation:none}}
-  `;
-  const overlay = document.createElement("div");
-  overlay.className = "aws-saa-tracker-celebration";
-  const banner = document.createElement("div");
-  banner.className = "aws-saa-tracker-banner";
-  banner.textContent = "🎉 ¡Meta diaria cumplida!";
-  overlay.append(style, banner);
+  if (!celebrationOverlay?.isConnected) {
+    const style = document.createElement("style");
+    style.textContent = `
+      .aws-saa-tracker-celebration{position:fixed;inset:0;z-index:2147483647;pointer-events:none;overflow:hidden;font-family:system-ui,sans-serif}
+      .aws-saa-tracker-banner{position:absolute;top:24px;left:50%;transform:translateX(-50%);padding:14px 22px;border-radius:999px;background:#142b40;color:white;font-size:16px;font-weight:700;box-shadow:0 12px 36px #15283a66;animation:aws-saa-banner-in .45s ease-out both}
+      .aws-saa-tracker-burst{position:absolute;inset:0;overflow:hidden}
+      .aws-saa-tracker-piece{position:absolute;top:-18px;width:9px;height:14px;border-radius:3px;animation:aws-saa-fall var(--fall-time) linear var(--delay) forwards;left:var(--left);background:var(--color);transform:rotate(var(--spin))}
+      @keyframes aws-saa-fall{to{top:110vh;transform:translateX(var(--drift)) rotate(calc(var(--spin) + 720deg));opacity:.8}}
+      @keyframes aws-saa-banner-in{from{opacity:0;top:0}to{opacity:1;top:24px}}
+      @media(prefers-reduced-motion:reduce){.aws-saa-tracker-piece{animation-duration:1ms!important}.aws-saa-tracker-banner{animation:none}}
+    `;
+    celebrationOverlay = document.createElement("div");
+    celebrationOverlay.className = "aws-saa-tracker-celebration";
+    celebrationOverlay.setAttribute("aria-hidden", "true");
+    const banner = document.createElement("div");
+    banner.className = "aws-saa-tracker-banner";
+    banner.textContent = "🎉 ¡Meta diaria cumplida!";
+    celebrationOverlay.append(style, banner);
+    document.documentElement.append(celebrationOverlay);
+  }
 
+  const overlay = celebrationOverlay;
+  const burst = document.createElement("div");
+  burst.className = "aws-saa-tracker-burst";
   const colors = ["#3f6d8c", "#527d99", "#18344e", "#8bb6ce", "#d7a84a"];
-  for (let i = 0; i < 72; i += 1) {
+  for (let i = 0; i < 84; i += 1) {
     const piece = document.createElement("i");
     piece.className = "aws-saa-tracker-piece";
     piece.style.setProperty("--left", `${Math.random() * 100}%`);
@@ -233,10 +241,16 @@ function celebrateGoal() {
     piece.style.setProperty("--fall-time", `${2.4 + Math.random() * 1.2}s`);
     piece.style.setProperty("--spin", `${Math.random() * 360}deg`);
     piece.style.setProperty("--drift", `${Math.round((Math.random() - 0.5) * 180)}px`);
-    overlay.append(piece);
+    burst.append(piece);
   }
-  document.documentElement.append(overlay);
-  setTimeout(() => overlay.remove(), 4500);
+  overlay.append(burst);
+  setTimeout(() => {
+    burst.remove();
+    if (!overlay.querySelector(".aws-saa-tracker-burst")) {
+      overlay.remove();
+      if (celebrationOverlay === overlay) celebrationOverlay = null;
+    }
+  }, 4500);
 }
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {

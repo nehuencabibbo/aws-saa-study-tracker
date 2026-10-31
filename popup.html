@@ -24,12 +24,28 @@
           <span class="daily-percent" id="today-percent">—</span>
         </div>
         <div class="daily-heading">
-          <h2 id="daily-heading"><span class="goal-emoji" aria-hidden="true">🎯</span>Meta diaria</h2>
+          <h2 id="daily-heading">
+            <!-- Lucide Static 1.66.0: target. Licenses: see THIRD_PARTY_NOTICES.md. -->
+            <svg class="goal-icon lucide lucide-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="6" />
+              <circle cx="12" cy="12" r="2" />
+            </svg>
+            Meta diaria
+          </h2>
           <span class="celebrate-tooltip-wrap" id="celebrate-tooltip" tabindex="0" role="group" aria-label="Disponible solo al alcanzar el 100% de la meta diaria." data-tooltip="Disponible solo al alcanzar el 100% de la meta diaria.">
             <button class="celebrate-button" id="celebrate-button" type="button" aria-label="Confeti: se habilita al alcanzar el 100% de la meta diaria" disabled>
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.64 5.64l2.12 2.12m8.48 8.48 2.12 2.12m0-12.72-2.12 2.12m-8.48 8.48-2.12 2.12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="m12 7 1.4 3.6L17 12l-3.6 1.4L12 17l-1.4-3.6L7 12l3.6-1.4L12 7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <!-- Lucide Static 1.66.0: party-popper. License: see THIRD_PARTY_NOTICES.md. -->
+              <svg class="lucide lucide-party-popper" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5.8 11.3 2 22l10.7-3.79" />
+                <path d="M4 3h.01" />
+                <path d="M22 8h.01" />
+                <path d="M15 2h.01" />
+                <path d="M22 20h.01" />
+                <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" />
+                <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17" />
+                <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" />
+                <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" />
               </svg>
             </button>
           </span>

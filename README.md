@@ -26,13 +26,15 @@ El plan permite definir una cantidad de días desde la fecha de inicio o una fec
 - Progreso total por duración: tiempo visto, tiempo pendiente y porcentaje del curso.
 - Plan ajustable por duración o fecha final, con ritmo diario estimado.
 - Sincronización automática al detectar cambios en la lista de lecciones y botón **Actualizar** para volver a leerla a pedido.
-- Confeti al alcanzar la meta diaria, con un botón que se habilita al llegar al 100 %.
+- Confeti al alcanzar la meta diaria; el botón se habilita al llegar al 100 % y cada toque agrega otro estallido.
 - Porcentaje diario en el badge del ícono de Chrome.
 - Progreso guardado en el almacenamiento local de Chrome.
 
+Los iconos de meta y confeti usan trazados SVG de [Lucide](https://lucide.dev), recoloreados con la paleta de la extensión. Se incluyen inline en el popup, así que Chrome no carga ninguna librería JavaScript externa. `lucide-static` está en las dependencias de desarrollo para consultar o actualizar esos recursos; los avisos de licencia están en [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 ## Instalación en modo desarrollador
 
-No hace falta compilar ni instalar dependencias.
+Para cargar la extensión no hace falta compilar ni instalar dependencias.
 
 1. Cloná este repositorio o descargá el código fuente.
 2. Abrí `chrome://extensions` en Chrome y activá **Modo de desarrollador**.
@@ -51,6 +53,8 @@ Al actualizar los archivos, recargá la extensión desde `chrome://extensions` y
 5. Usá **Actualizar** si querés forzar una lectura de la pestaña activa.
 
 El badge de Chrome muestra el porcentaje de la meta diaria. El popup conserva el detalle en minutos y horas.
+
+Si querés actualizar los iconos desde Lucide, instalá las dependencias de desarrollo con `npm ci`; la extensión publicada no carga ni necesita `node_modules`.
 
 ## Cómo se calcula
 
@@ -85,10 +89,13 @@ El manifiesto declara estos permisos:
 │   ├── course-data.json       # Catálogo inicial de secciones y lecciones
 │   └── study-tracker-icon.png # Ícono de la extensión
 ├── docs/screenshots/          # Capturas del popup para este README
+├── .gitignore                 # Excluye dependencias instaladas localmente
 ├── background.js              # Persistencia, cálculos y badge
 ├── content.js                 # Lectura del sidebar y sincronización
 ├── manifest.json              # Configuración de Chrome MV3
+├── package.json               # Fuente de desarrollo para iconos Lucide
 ├── popup.css                  # Estilos del popup
 ├── popup.html                 # Estructura de la interfaz
-└── popup.js                   # Plan, métricas y eventos del popup
+├── popup.js                   # Plan, métricas y eventos del popup
+└── THIRD_PARTY_NOTICES.md     # Licencias de los iconos Lucide
 ```
