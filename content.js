@@ -5,6 +5,41 @@ const COMPLETION_CONTROL_SELECTOR = "#lecture_complete_button, #lecture_content_
 let updateTimer;
 let lastScanLogKey = "";
 let lastScanDiagnostic = null;
+let observer = null;
+let extensionContextInvalidated = false;
+const completionRetryTimers = new Set();
+
+function errorDetails(error) {
+  return {
+    message: error?.message || String(error),
+    stack: error?.stack || null,
+  };
+}
+
+function handleExtensionContextError(error, source) {
+  const details = errorDetails(error);
+  if (!/extension context invalidated|context invalidated/i.test(details.message)) return false;
+
+  if (!extensionContextInvalidated) {
+    extensionContextInvalidated = true;
+    clearTimeout(updateTimer);
+    for (const timer of completionRetryTimers) clearTimeout(timer);
+    completionRetryTimers.clear();
+    observer?.disconnect();
+    console.warn(`${LOG_PREFIX} La extensión se recargó mientras esta pestaña seguía abierta. Recargá la página del curso para conectar la nueva versión.`, {
+      source,
+      ...pageDetails(),
+      ...details,
+    });
+  }
+  return true;
+}
+
+function logRuntimeMessageError(label, error, source) {
+  if (handleExtensionContextError(error, source)) return;
+  const details = errorDetails(error);
+  console.error(`${LOG_PREFIX} ${label}`, { source, ...pageDetails(), ...details });
+}
 
 function pageDetails() {
   return {
@@ -128,25 +163,33 @@ function scrapeCourse(source = "automatic") {
   return result.snapshot;
 }
 
-function sendSnapshot(source = "automatic sync") {
+async function sendSnapshot(source = "automatic sync") {
+  if (extensionContextInvalidated) return;
   const snapshot = scrapeCourse(source);
   if (!snapshot) return;
-  chrome.runtime.sendMessage({ type: "COURSE_SNAPSHOT", snapshot })
-    .then((response) => {
-      if (!response?.ok) console.error(`${LOG_PREFIX} El service worker rechazó el snapshot.`, response);
-    })
-    .catch((error) => console.error(`${LOG_PREFIX} No se pudo enviar el snapshot al service worker.`, error));
+  try {
+    const response = await chrome.runtime.sendMessage({ type: "COURSE_SNAPSHOT", snapshot });
+    if (!response?.ok) console.error(`${LOG_PREFIX} El service worker rechazó el snapshot.`, response);
+  } catch (error) {
+    logRuntimeMessageError("No se pudo enviar el snapshot al service worker.", error, source);
+  }
 }
 
 function scheduleSnapshot(source = "sidebar mutation") {
+  if (extensionContextInvalidated) return;
   clearTimeout(updateTimer);
   updateTimer = setTimeout(() => sendSnapshot(source), 350);
 }
 
 function scheduleCompletionSync() {
+  if (extensionContextInvalidated) return;
   console.info(`${LOG_PREFIX} Se pulsó el control de completar lección; voy a volver a leer el sidebar.`, pageDetails());
   [0, 500, 1500, 3500].forEach((delay) => {
-    setTimeout(() => sendSnapshot(`completion action retry ${delay}ms`), delay);
+    const timer = setTimeout(() => {
+      completionRetryTimers.delete(timer);
+      sendSnapshot(`completion action retry ${delay}ms`);
+    }, delay);
+    completionRetryTimers.add(timer);
   });
 }
 
@@ -209,6 +252,10 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   }
 
   if (message?.type === "REQUEST_SNAPSHOT") {
+    if (extensionContextInvalidated) {
+      sendResponse({ ok: false, error: "La extensión se recargó. Recargá esta página del curso." });
+      return;
+    }
     const snapshot = scrapeCourse("popup refresh");
     if (!snapshot) {
       sendResponse({
@@ -218,16 +265,35 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
       });
       return;
     }
-    chrome.runtime.sendMessage({ type: "COURSE_SNAPSHOT", snapshot })
-      .then((response) => sendResponse(response))
-      .catch((error) => sendResponse({ ok: false, error: error.message }));
+    void (async () => {
+      let response;
+      try {
+        response = await chrome.runtime.sendMessage({ type: "COURSE_SNAPSHOT", snapshot });
+      } catch (error) {
+        const wasInvalidated = handleExtensionContextError(error, "popup refresh");
+        if (!wasInvalidated) logRuntimeMessageError("No se pudo enviar la lectura solicitada por el popup.", error, "popup refresh");
+        response = {
+          ok: false,
+          error: wasInvalidated
+            ? "La extensión se recargó. Recargá esta página del curso y volvé a tocar Actualizar."
+            : errorDetails(error).message,
+        };
+      }
+
+      try {
+        sendResponse(response);
+      } catch (error) {
+        logRuntimeMessageError("No se pudo responder al popup.", error, "popup refresh response");
+      }
+    })();
     return true;
   }
 });
 
 console.info(`${LOG_PREFIX} Content script inyectado.`, pageDetails());
 
-const observer = new MutationObserver((records) => {
+observer = new MutationObserver((records) => {
+  if (extensionContextInvalidated) return;
   const relevant = records.some((record) => {
     if (record.type === "attributes") return isInsideSidebar(record.target);
     return isInsideSidebar(record.target) ||

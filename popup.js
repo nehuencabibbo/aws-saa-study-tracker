@@ -313,6 +313,11 @@ function courseDiagnosticMessage(diagnostic) {
   }
 }
 
+function isContentScriptConnectionError(error) {
+  return /could not establish connection|receiving end does not exist|extension context invalidated|message port closed/i
+    .test(error?.message || String(error));
+}
+
 async function syncActiveCourseTab() {
   let tab;
   try {
@@ -340,14 +345,26 @@ async function syncActiveCourseTab() {
     };
   } catch (error) {
     const url = tab?.url || tab?.pendingUrl || "URL no disponible (permisos del navegador)";
-    console.error(`${LOG_PREFIX} No se pudo contactar el content script. Puede no haberse inyectado para esta URL.`, {
+    const message = error?.message || String(error);
+    const isCoursePage = /^https:\/\/learn\.cantrill\.io\/courses\//i.test(url);
+    const connectionError = isContentScriptConnectionError(error);
+    const logDetails = {
       tabId: tab?.id ?? null,
       url,
-      error: error?.message || String(error),
-    });
+      error: message,
+      stack: error?.stack || null,
+      likelyCause: connectionError
+        ? (isCoursePage ? "content_script_stale_or_missing" : "no_content_script_for_url")
+        : "unexpected_error",
+    };
+    const logMessage = `${LOG_PREFIX} No se pudo contactar el content script: ${JSON.stringify(logDetails)}`;
+    if (connectionError) console.warn(logMessage);
+    else console.error(logMessage);
     return {
       ok: false,
-      message: "La pestaña no respondió. Abrí una lección de learn.cantrill.io; si acabás de cargar la extensión, recargá esa página.",
+      message: connectionError && isCoursePage
+        ? "La extensión se recargó, pero esta pestaña conserva el script anterior. Recargá la página del curso y volvé a tocar Actualizar."
+        : "La pestaña no respondió. Abrí una lección de learn.cantrill.io y tocá Actualizar.",
     };
   }
 }
