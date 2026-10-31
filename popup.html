@@ -9,78 +9,109 @@
   <body>
     <main class="app-shell">
       <header class="topbar">
-        <div class="brand-icon" aria-hidden="true">☁</div>
-        <div>
-          <p class="eyebrow">AWS STUDY TRACKER</p>
-          <h1>Solutions Architect<br>Associate</h1>
+        <img class="brand-logo" src="assets/study-tracker-icon.png" alt="" aria-hidden="true">
+        <div class="brand-copy">
+          <p class="eyebrow">STUDY TRACKER</p>
+          <h1>Solutions Architect</h1>
+          <p class="course-subtitle">Associate · AWS</p>
         </div>
         <span class="course-badge">SAA-C03</span>
       </header>
 
       <section class="daily-card" aria-labelledby="daily-heading">
-        <div class="card-heading">
-          <div>
-            <p class="eyebrow">PROGRESO DE HOY</p>
-            <h2 id="daily-heading">Tu meta diaria</h2>
-          </div>
-          <span class="sun-icon" aria-hidden="true">◷</span>
+        <div class="section-topline">
+          <p class="eyebrow"><span class="eyebrow-dot"></span>PROGRESO DE HOY</p>
+          <span class="daily-percent" id="today-percent">—</span>
+        </div>
+        <div class="daily-heading">
+          <h2 id="daily-heading">Meta diaria</h2>
+          <span class="sun-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="8.25" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 7v5l3.2 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
         </div>
         <div class="progress-copy">
           <strong id="today-progress">—</strong>
-          <span id="today-percent">—</span>
+          <span id="today-progress-label">visto / objetivo</span>
         </div>
-        <div class="progress-track" role="progressbar" aria-label="Progreso diario" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-track" id="daily-track" role="progressbar" aria-label="Progreso de la meta diaria" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Cargando">
           <div class="progress-fill" id="daily-fill"></div>
         </div>
-        <p class="goal-caption" id="goal-caption">Cargando tu progreso…</p>
-      </section>
+        <p class="goal-caption" id="goal-caption" role="status" aria-live="polite" aria-atomic="true">Cargando tu progreso…</p>
 
-      <section class="total-card" aria-labelledby="total-heading">
-        <div class="total-heading">
-          <div>
-            <p class="eyebrow">PROGRESO TOTAL DEL CURSO</p>
-            <h2 id="total-heading">Avance por horas de video</h2>
+        <div class="plan-summary-row">
+          <div class="plan-summary-copy">
+            <p class="eyebrow plan-summary-label">PLAZO DEL PLAN</p>
+            <p class="muted" id="plan-summary">Calculando el plazo…</p>
           </div>
-          <strong class="total-percent" id="total-percent">—</strong>
-        </div>
-        <div class="total-copy">
-          <strong id="total-progress">—</strong>
-          <span id="total-duration">—</span>
-        </div>
-        <div class="total-track" id="total-track" role="progressbar" aria-label="Progreso total del curso" aria-valuemin="0" aria-valuemax="100">
-          <div class="total-fill" id="total-fill"></div>
-        </div>
-        <p class="total-caption" id="total-caption">Cargando el tiempo total…</p>
-        <p class="lesson-caption" id="lesson-count">— lecciones completas</p>
-      </section>
-
-      <section class="plan-card" aria-labelledby="plan-heading">
-        <div class="plan-copy">
-          <p class="eyebrow">TU PLAN</p>
-          <h2 id="plan-heading"><span id="daily-target">—</span><small> por día</small></h2>
-          <p class="muted" id="plan-summary">Duración del plan: 90 días</p>
+          <button class="edit-plan-button" id="edit-plan-button" type="button" aria-expanded="false" aria-controls="plan-editor">Editar fechas</button>
         </div>
         <form id="plan-form" class="plan-form">
-          <label for="plan-days">Terminar en</label>
-          <div class="input-row">
-            <input id="plan-days" name="days" type="number" min="1" max="3650" step="1" required aria-label="Cantidad de días">
-            <span>días</span>
-            <button type="submit" aria-label="Guardar duración del plan">Guardar</button>
+          <div class="plan-editor" id="plan-editor" hidden>
+            <div class="plan-mode-switch" role="group" aria-label="Cómo elegir la fecha de finalización">
+              <button type="button" class="mode-button" data-plan-mode="duration" aria-pressed="true">Por duración</button>
+              <button type="button" class="mode-button" data-plan-mode="date" aria-pressed="false">Fecha fija</button>
+            </div>
+            <div class="plan-fields">
+              <label for="start-date">Fecha de inicio
+                <input id="start-date" name="startDate" type="date" required>
+              </label>
+              <div id="duration-field">
+                <label for="plan-days">Duración</label>
+                <div class="days-input-row">
+                  <input id="plan-days" name="durationDays" type="number" min="1" max="3650" step="1" required>
+                  <span aria-hidden="true">días</span>
+                </div>
+              </div>
+              <label id="deadline-field" for="end-date" hidden>Terminar para
+                <input id="end-date" name="endDate" type="date">
+              </label>
+            </div>
+            <p class="plan-preview" id="plan-preview" aria-live="polite">Ritmo estimado: —</p>
+            <div class="plan-actions">
+              <p class="plan-hint">Se calcula con el video pendiente y los días disponibles.</p>
+              <button class="save-plan-button" type="submit">Guardar plan</button>
+            </div>
+            <p class="form-error" id="form-error" role="alert"></p>
           </div>
-          <p class="form-error" id="form-error" role="alert"></p>
         </form>
       </section>
 
-      <footer class="sync-footer">
-        <div class="sync-info">
-          <span class="sync-dot" id="sync-dot"></span>
-          <p id="sync-status">Cargando…</p>
+      <section class="total-card" aria-labelledby="total-heading">
+        <div class="total-topline">
+          <p class="eyebrow">PROGRESO TOTAL</p>
+          <span class="total-percent" id="total-percent">—</span>
         </div>
-        <button class="refresh-button" id="refresh-button" type="button" title="Volver a leer el curso">
-          <span aria-hidden="true">↻</span> Actualizar
-        </button>
-      </footer>
-      <p class="privacy-note">Solo cuenta una lección cuando la plataforma la marca como completa.</p>
+        <div class="total-copy">
+          <h2 id="total-heading">Visto</h2>
+          <span class="total-time"><strong id="total-progress">—</strong><span id="total-duration">—</span></span>
+        </div>
+        <div class="total-track" id="total-track" role="progressbar" aria-label="Progreso total del curso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Cargando">
+          <div class="total-fill" id="total-fill"></div>
+        </div>
+        <div class="total-footnote">
+          <p class="total-caption" id="total-caption">Cargando el tiempo total…</p>
+          <p class="lesson-caption" id="lesson-count">— lecciones completas</p>
+        </div>
+        <p class="completion-note">Las lecciones se cuentan cuando la plataforma las marca como completas.</p>
+      </section>
+
+      <section class="sync-panel" aria-labelledby="sync-heading">
+        <div class="sync-heading">
+          <div class="sync-title">
+            <span class="sync-dot" id="sync-dot" aria-hidden="true"></span>
+            <h2 id="sync-heading">Sincronización</h2>
+          </div>
+          <button class="refresh-button" id="refresh-button" type="button" title="Volver a leer el curso">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.2 6A5.5 5.5 0 0 0 3.3 4.3L2.2 5.5M2.2 5.5V2.8m0 2.7H5M2.8 10A5.5 5.5 0 0 0 12.7 11.7l1.1-1.2m0 0v2.7m0-2.7H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Actualizar
+          </button>
+        </div>
+        <p class="sync-status" id="sync-status" role="status" aria-live="polite" aria-atomic="true">Cargando…</p>
+      </section>
+
     </main>
     <script src="popup.js"></script>
   </body>

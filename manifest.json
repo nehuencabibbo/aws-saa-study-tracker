@@ -1,14 +1,18 @@
 {
   "manifest_version": 3,
   "name": "AWS SAA Study Tracker",
-  "version": "1.0.2",
+  "version": "1.1.2",
   "description": "Planifica y registra tu progreso en el curso AWS SAA-C03 de Adrian Cantrill.",
+  "icons": {
+    "128": "assets/study-tracker-icon.png"
+  },
   "permissions": ["storage", "activeTab"],
   "host_permissions": ["https://learn.cantrill.io/*"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
+    "default_icon": "assets/study-tracker-icon.png",
     "default_title": "AWS SAA Study Tracker",
     "default_popup": "popup.html"
   },

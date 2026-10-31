@@ -1,6 +1,7 @@
 const COURSE_ID = "aws-saa-c03";
 const PLATFORM_COURSE_ID = "1820301";
 const LOG_PREFIX = "[AWS SAA Tracker]";
+const COMPLETION_CONTROL_SELECTOR = "#lecture_complete_button, #lecture_content_complete_button";
 let updateTimer;
 let lastScanLogKey = "";
 let lastScanDiagnostic = null;
@@ -92,6 +93,7 @@ function scanCourse() {
       courseId: COURSE_ID,
       title: document.querySelector(".course-sidebar-head h2")?.textContent?.replace(/\s+/g, " ").trim() || "AWS SAA-C03",
       lectures: lessons,
+      observedAt: Date.now(),
     },
     diagnostic: idDetails,
   };
@@ -126,8 +128,8 @@ function scrapeCourse(source = "automatic") {
   return result.snapshot;
 }
 
-function sendSnapshot() {
-  const snapshot = scrapeCourse("automatic sync");
+function sendSnapshot(source = "automatic sync") {
+  const snapshot = scrapeCourse(source);
   if (!snapshot) return;
   chrome.runtime.sendMessage({ type: "COURSE_SNAPSHOT", snapshot })
     .then((response) => {
@@ -136,15 +138,27 @@ function sendSnapshot() {
     .catch((error) => console.error(`${LOG_PREFIX} No se pudo enviar el snapshot al service worker.`, error));
 }
 
-function scheduleSnapshot() {
+function scheduleSnapshot(source = "sidebar mutation") {
   clearTimeout(updateTimer);
-  updateTimer = setTimeout(sendSnapshot, 350);
+  updateTimer = setTimeout(() => sendSnapshot(source), 350);
 }
 
-function isSidebarNode(node) {
+function scheduleCompletionSync() {
+  console.info(`${LOG_PREFIX} Se pulsó el control de completar lección; voy a volver a leer el sidebar.`, pageDetails());
+  [0, 500, 1500, 3500].forEach((delay) => {
+    setTimeout(() => sendSnapshot(`completion action retry ${delay}ms`), delay);
+  });
+}
+
+function isInsideSidebar(node) {
   if (!(node instanceof Element)) return false;
   return node.matches("#courseSidebar, .course-sidebar") ||
-    Boolean(node.closest("#courseSidebar, .course-sidebar")) ||
+    Boolean(node.closest("#courseSidebar, .course-sidebar"));
+}
+
+function containsSidebar(node) {
+  if (!(node instanceof Element)) return false;
+  return node.matches("#courseSidebar, .course-sidebar") ||
     Boolean(node.querySelector("#courseSidebar, .course-sidebar"));
 }
 
@@ -153,7 +167,7 @@ function celebrateGoal() {
   const style = document.createElement("style");
   style.textContent = `
     .aws-saa-tracker-celebration{position:fixed;inset:0;z-index:2147483647;pointer-events:none;overflow:hidden;font-family:system-ui,sans-serif}
-    .aws-saa-tracker-banner{position:absolute;top:24px;left:50%;transform:translateX(-50%);padding:14px 22px;border-radius:999px;background:#102a43;color:white;font-size:16px;font-weight:700;box-shadow:0 12px 36px #102a4366;animation:aws-saa-banner-in .45s ease-out both}
+    .aws-saa-tracker-banner{position:absolute;top:24px;left:50%;transform:translateX(-50%);padding:14px 22px;border-radius:999px;background:#142b40;color:white;font-size:16px;font-weight:700;box-shadow:0 12px 36px #15283a66;animation:aws-saa-banner-in .45s ease-out both}
     .aws-saa-tracker-piece{position:absolute;top:-18px;width:9px;height:14px;border-radius:3px;animation:aws-saa-fall var(--fall-time) linear var(--delay) forwards;left:var(--left);background:var(--color);transform:rotate(var(--spin))}
     @keyframes aws-saa-fall{to{top:110vh;transform:translateX(var(--drift)) rotate(calc(var(--spin) + 720deg));opacity:.8}}
     @keyframes aws-saa-banner-in{from{opacity:0;top:0}to{opacity:1;top:24px}}
@@ -166,20 +180,20 @@ function celebrateGoal() {
   banner.textContent = "🎉 ¡Meta diaria cumplida!";
   overlay.append(style, banner);
 
-  const colors = ["#ef6c35", "#f2c14e", "#36b37e", "#4c9aff", "#aa70e0", "#f25f5c"];
-  for (let i = 0; i < 110; i += 1) {
+  const colors = ["#3f6d8c", "#527d99", "#18344e", "#8bb6ce", "#d7a84a"];
+  for (let i = 0; i < 72; i += 1) {
     const piece = document.createElement("i");
     piece.className = "aws-saa-tracker-piece";
     piece.style.setProperty("--left", `${Math.random() * 100}%`);
     piece.style.setProperty("--color", colors[i % colors.length]);
     piece.style.setProperty("--delay", `${Math.random() * 1.1}s`);
-    piece.style.setProperty("--fall-time", `${3 + Math.random() * 2.5}s`);
+    piece.style.setProperty("--fall-time", `${2.4 + Math.random() * 1.2}s`);
     piece.style.setProperty("--spin", `${Math.random() * 360}deg`);
     piece.style.setProperty("--drift", `${Math.round((Math.random() - 0.5) * 180)}px`);
     overlay.append(piece);
   }
   document.documentElement.append(overlay);
-  setTimeout(() => overlay.remove(), 6500);
+  setTimeout(() => overlay.remove(), 4500);
 }
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
@@ -209,8 +223,9 @@ console.info(`${LOG_PREFIX} Content script inyectado.`, pageDetails());
 
 const observer = new MutationObserver((records) => {
   const relevant = records.some((record) => {
-    if (record.type === "attributes") return isSidebarNode(record.target);
-    return isSidebarNode(record.target) || [...record.addedNodes].some(isSidebarNode);
+    if (record.type === "attributes") return isInsideSidebar(record.target);
+    return isInsideSidebar(record.target) ||
+      [...record.addedNodes, ...record.removedNodes].some(containsSidebar);
   });
   if (relevant) scheduleSnapshot();
 });
@@ -219,9 +234,16 @@ observer.observe(document.documentElement, {
   subtree: true,
   childList: true,
   attributes: true,
-  attributeFilter: ["class", "aria-label"],
 });
 
-window.addEventListener("popstate", scheduleSnapshot);
-window.addEventListener("hashchange", scheduleSnapshot);
+document.addEventListener("click", (event) => {
+  const target = event.target instanceof Element ? event.target.closest(COMPLETION_CONTROL_SELECTOR) : null;
+  if (target) scheduleCompletionSync();
+}, true);
+
+window.addEventListener("popstate", () => scheduleSnapshot("popstate navigation"));
+window.addEventListener("hashchange", () => scheduleSnapshot("hash navigation"));
+window.addEventListener("pageshow", () => scheduleSnapshot("page show"));
+document.addEventListener("turbo:load", () => scheduleSnapshot("Turbo navigation"));
+document.addEventListener("turbolinks:load", () => scheduleSnapshot("Turbolinks navigation"));
 scheduleSnapshot();
