@@ -226,10 +226,12 @@ function updateActionBadge(state) {
   const percent = target > 0 ? Math.min(100, Math.floor((completed / target) * 100)) : 100;
   const goalReached = completed >= target;
 
-  chrome.action.setBadgeText({ text: `${percent}%` });
+  // Chrome controls the badge typography and overlays it on the icon. Keep
+  // only the numeric percentage here so 100% renders as three glyphs, not four.
+  chrome.action.setBadgeText({ text: String(percent) });
   chrome.action.setBadgeBackgroundColor({ color: goalReached ? "#2f6851" : "#3f6d8c" });
   chrome.action.setTitle({
-    title: `AWS SAA Study Tracker · Hoy: ${compactDuration(completed)} de ${compactDuration(target)} (${percent}%)`,
+    title: `AWS SAA Study Tracker · Badge: ${percent}% de la meta diaria · Hoy: ${compactDuration(completed)} de ${compactDuration(target)}`,
   });
 }
 
