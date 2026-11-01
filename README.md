@@ -49,7 +49,7 @@ Al actualizar los archivos, recargá la extensión desde `chrome://extensions` y
 1. Abrí una lección del curso SAA-C03. La extensión lee el menú de lecciones y guarda el estado que informa la plataforma.
 2. En el popup, revisá cuánto completaste hoy, cuánto te falta para la meta y el progreso total del curso.
 3. En **Editar fechas**, indicá cuándo empezaste y elegí una duración o una fecha final. La vista previa muestra el ritmo diario necesario antes de guardar.
-4. Completá las lecciones en la plataforma. Cuando el menú las marque como completas, el tracker suma su duración y actualiza las barras.
+4. Completá las lecciones en la plataforma. Al pulsar **Complete and Continue**, el tracker identifica la lección de la URL y confirma el avance cuando abre la siguiente; también vuelve a leer el sidebar cuando la plataforma actualiza su estado.
 5. Usá **Actualizar** si querés forzar una lectura de la pestaña activa.
 
 El badge de Chrome muestra el porcentaje de la meta diaria. El popup conserva el detalle en minutos y horas.
@@ -79,6 +79,7 @@ El manifiesto declara estos permisos:
 - Si **Actualizar** avisa que no hay respuesta, recargá la pestaña del curso. Esto también es necesario después de recargar o actualizar la extensión.
 - Para ver los logs del popup: clic derecho sobre el popup → **Inspeccionar** → **Console**.
 - Para ver los logs de la página, abrí DevTools en la lección y filtrá la consola por `[AWS SAA Tracker]`.
+- Al pulsar **Complete and Continue**, buscá `Se pulsó el control de completar lección` en la página y `Clic de completar recibido` en el service worker. Cuando abre la lección siguiente, `Avance confirmado al abrir la siguiente lección` indica el ID registrado.
 - Para revisar el almacenamiento y los errores del service worker, abrí los detalles de la extensión en `chrome://extensions` y elegí **Inspeccionar** en el service worker.
 - El lector procesa el curso SAA-C03 con ID `1820301`. Si Adrian Cantrill cambia la estructura del sidebar, puede ser necesario actualizar los selectores de `content.js`.
 

@@ -1,4 +1,5 @@
 const STORAGE_KEY = "awsSaaTrackerState";
+const PENDING_COMPLETIONS_KEY = "awsSaaTrackerPendingCompletions";
 const COURSE_DATA_PATH = "assets/course-data.json";
 const DEFAULT_PLAN_DAYS = 90;
 const MAX_PLAN_DAYS = 3650;
@@ -235,11 +236,60 @@ function updateActionBadge(state) {
   });
 }
 
-async function syncSnapshot(snapshot, tabId) {
+async function readPendingCompletion(tabId) {
+  if (tabId == null) return null;
+  const stored = await chrome.storage.session.get(PENDING_COMPLETIONS_KEY);
+  return stored[PENDING_COMPLETIONS_KEY]?.[String(tabId)] || null;
+}
+
+async function writePendingCompletion(tabId, completion) {
+  const stored = await chrome.storage.session.get(PENDING_COMPLETIONS_KEY);
+  const pendingByTab = stored[PENDING_COMPLETIONS_KEY] || {};
+  pendingByTab[String(tabId)] = completion;
+  await chrome.storage.session.set({ [PENDING_COMPLETIONS_KEY]: pendingByTab });
+}
+
+async function clearPendingCompletion(tabId) {
+  if (tabId == null) return;
+  const stored = await chrome.storage.session.get(PENDING_COMPLETIONS_KEY);
+  const pendingByTab = stored[PENDING_COMPLETIONS_KEY] || {};
+  if (!Object.hasOwn(pendingByTab, String(tabId))) return;
+  delete pendingByTab[String(tabId)];
+  await chrome.storage.session.set({ [PENDING_COMPLETIONS_KEY]: pendingByTab });
+}
+
+async function completionEvidenceForSnapshot(snapshot, tabId) {
+  const pending = await readPendingCompletion(tabId);
+  if (!pending) return { lectureIds: [], clearPending: false };
+
+  const clickedAt = Number(pending.clickedAt);
+  const age = Date.now() - clickedAt;
+  const lessons = snapshot?.lectures || [];
+  const clickedLesson = lessons.find((lecture) => lecture.id === pending.lectureId);
+  if (clickedLesson?.completed || !Number.isFinite(clickedAt) || age < 0 || age > 30000) {
+    return { lectureIds: [], clearPending: true };
+  }
+
+  const currentLectureId = snapshot?.currentLectureId;
+  if (!currentLectureId || currentLectureId === pending.lectureId) {
+    return { lectureIds: [], clearPending: false };
+  }
+
+  const clickedIndex = lessons.findIndex((lecture) => lecture.id === pending.lectureId);
+  const currentIndex = lessons.findIndex((lecture) => lecture.id === currentLectureId);
+  const advancedToNextLesson = clickedIndex >= 0 && currentIndex === clickedIndex + 1;
+  return {
+    lectureIds: advancedToNextLesson ? [pending.lectureId] : [],
+    clearPending: true,
+  };
+}
+
+async function syncSnapshot(snapshot, tabId, confirmedCompletionIds = []) {
   const state = await ensureState();
   const receivedAt = Number(snapshot?.observedAt);
   const snapshotAt = Number.isFinite(receivedAt) && receivedAt > 0 ? receivedAt : Date.now();
-  if (snapshotAt < (state.lastSnapshotAt || 0)) {
+  const staleSnapshot = snapshotAt < (state.lastSnapshotAt || 0);
+  if (staleSnapshot && !confirmedCompletionIds.length) {
     console.warn(`${LOG_PREFIX} Snapshot obsoleto ignorado para no revertir el progreso.`, {
       tabId: tabId ?? null,
       snapshotAt,
@@ -254,29 +304,45 @@ async function syncSnapshot(snapshot, tabId) {
   const targetBefore = targetSeconds(state, today);
   const now = new Date().toISOString();
 
-  for (const incoming of snapshot.lectures || []) {
-    if (!incoming.id) continue;
-    const previous = state.lectures[incoming.id];
-    const completed = Boolean(incoming.completed);
-    let completedAt = previous?.completedAt || null;
+  if (!staleSnapshot) {
+    for (const incoming of snapshot.lectures || []) {
+      if (!incoming.id) continue;
+      const previous = state.lectures[incoming.id];
+      const completed = Boolean(incoming.completed) || confirmedCompletionIds.includes(incoming.id);
+      let completedAt = previous?.completedAt || null;
 
-    if (!completed) {
-      completedAt = null;
-    } else if (!previous || !previous.completed) {
-      completedAt = now;
+      if (!completed) {
+        completedAt = null;
+      } else if (!previous || !previous.completed) {
+        completedAt = now;
+      }
+
+      state.lectures[incoming.id] = {
+        ...previous,
+        ...incoming,
+        completed,
+        completedAt,
+      };
     }
+  }
 
-    state.lectures[incoming.id] = {
+  for (const lectureId of confirmedCompletionIds) {
+    const incoming = snapshot.lectures?.find((lecture) => lecture.id === lectureId);
+    const previous = state.lectures[lectureId] || incoming;
+    if (!previous) continue;
+    state.lectures[lectureId] = {
       ...previous,
       ...incoming,
-      completed,
-      completedAt,
+      completed: true,
+      completedAt: previous.completed ? previous.completedAt : now,
     };
   }
 
-  state.title = snapshot.title || state.title;
   state.lastSyncAt = now;
-  state.lastSnapshotAt = snapshotAt;
+  if (!staleSnapshot) {
+    state.title = snapshot.title || state.title;
+    state.lastSnapshotAt = snapshotAt;
+  }
   const afterToday = todaySeconds(state, today);
   await chrome.storage.local.set({ [STORAGE_KEY]: state });
 
@@ -355,14 +421,43 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       sendResponse({ ok: true, state });
       return;
     }
+    if (message?.type === "COMPLETION_CLICKED") {
+      const tabId = sender.tab?.id;
+      const lectureId = String(message.lectureId || "");
+      const recorded = await enqueueStateMutation(async () => {
+        const state = await ensureState();
+        if (tabId == null || !state.lectures[lectureId]) return false;
+        await writePendingCompletion(tabId, { lectureId, clickedAt: Date.now() });
+        return true;
+      });
+      if (recorded) {
+        console.info(`${LOG_PREFIX} Clic de completar recibido.`, { tabId, lectureId });
+      }
+      sendResponse({ ok: recorded });
+      return;
+    }
     if (message?.type === "COURSE_SNAPSHOT") {
+      const tabId = sender.tab?.id;
       console.debug(`${LOG_PREFIX} Snapshot recibido.`, {
-        tabId: sender.tab?.id ?? null,
+        tabId: tabId ?? null,
         url: sender.tab?.url || sender.url || null,
+        currentLectureId: message.snapshot?.currentLectureId ?? null,
         lessonCount: message.snapshot?.lectures?.length ?? 0,
         completedCount: message.snapshot?.lectures?.filter((lesson) => lesson.completed).length ?? 0,
       });
-      const state = await enqueueStateMutation(() => syncSnapshot(message.snapshot, sender.tab?.id));
+      const state = await enqueueStateMutation(async () => {
+        const evidence = await completionEvidenceForSnapshot(message.snapshot, tabId);
+        const syncedState = await syncSnapshot(message.snapshot, tabId, evidence.lectureIds);
+        if (evidence.clearPending) await clearPendingCompletion(tabId);
+        if (evidence.lectureIds.length) {
+          console.info(`${LOG_PREFIX} Avance confirmado al abrir la siguiente lección.`, {
+            tabId: tabId ?? null,
+            completedLectureId: evidence.lectureIds[0],
+            currentLectureId: message.snapshot?.currentLectureId ?? null,
+          });
+        }
+        return syncedState;
+      });
       updateActionBadge(state);
       sendResponse({ ok: true, state });
       return;

@@ -51,6 +51,11 @@ function pageDetails() {
   };
 }
 
+function currentLectureId() {
+  const match = location.pathname.match(/^\/courses\/(\d+)\/lectures\/(\d+)(?:\/|$)/);
+  return match?.[1] === PLATFORM_COURSE_ID ? match[2] : null;
+}
+
 function parseDuration(title) {
   const match = title.match(/\((\d+):(\d{2})(?::(\d{2}))?\)\s*$/);
   if (!match) return { title: title.trim(), durationSeconds: null };
@@ -128,6 +133,7 @@ function scanCourse() {
     snapshot: {
       courseId: COURSE_ID,
       title: document.querySelector(".course-sidebar-head h2")?.textContent?.replace(/\s+/g, " ").trim() || "AWS SAA-C03",
+      currentLectureId: currentLectureId(),
       lectures: lessons,
       observedAt: Date.now(),
     },
@@ -324,7 +330,20 @@ observer.observe(document.documentElement, {
 
 document.addEventListener("click", (event) => {
   const target = event.target instanceof Element ? event.target.closest(COMPLETION_CONTROL_SELECTOR) : null;
-  if (target) scheduleCompletionSync();
+  if (!target) return;
+
+  const lectureId = currentLectureId();
+  if (lectureId) {
+    void (async () => {
+      try {
+        const response = await chrome.runtime.sendMessage({ type: "COMPLETION_CLICKED", lectureId });
+        if (!response?.ok) console.warn(`${LOG_PREFIX} No se pudo registrar el avance solicitado.`, response);
+      } catch (error) {
+        logRuntimeMessageError("No se pudo registrar el clic de completar lección.", error, "completion button click");
+      }
+    })();
+  }
+  scheduleCompletionSync();
 }, true);
 
 window.addEventListener("popstate", () => scheduleSnapshot("popstate navigation"));
