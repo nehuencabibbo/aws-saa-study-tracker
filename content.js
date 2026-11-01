@@ -212,12 +212,20 @@ function containsSidebar(node) {
     Boolean(node.querySelector("#courseSidebar, .course-sidebar"));
 }
 
-function celebrateGoal() {
+function celebrationDuration(seconds) {
+  const minutes = Math.max(1, Math.round((Number(seconds) || 0) / 60));
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+  if (!hours) return `${minutes} min`;
+  return remainingMinutes ? `${hours} h ${remainingMinutes} min` : `${hours} h`;
+}
+
+function celebrateGoal(message = "🎉 ¡Meta diaria cumplida!", pieceCount = 84, colors = null) {
   if (!celebrationOverlay?.isConnected) {
     const style = document.createElement("style");
     style.textContent = `
       .aws-saa-tracker-celebration{position:fixed;inset:0;z-index:2147483647;pointer-events:none;overflow:hidden;font-family:system-ui,sans-serif}
-      .aws-saa-tracker-banner{position:absolute;top:24px;left:50%;transform:translateX(-50%);padding:14px 22px;border-radius:999px;background:#142b40;color:white;font-size:16px;font-weight:700;box-shadow:0 12px 36px #15283a66;animation:aws-saa-banner-in .45s ease-out both}
+      .aws-saa-tracker-banner{position:absolute;top:24px;left:50%;transform:translateX(-50%);box-sizing:border-box;max-width:calc(100vw - 32px);padding:14px 22px;border-radius:999px;background:#142b40;color:white;font-size:16px;font-weight:700;text-align:center;box-shadow:0 12px 36px #15283a66;animation:aws-saa-banner-in .45s ease-out both}
       .aws-saa-tracker-burst{position:absolute;inset:0;overflow:hidden}
       .aws-saa-tracker-piece{position:absolute;top:-18px;width:9px;height:14px;border-radius:3px;animation:aws-saa-fall var(--fall-time) linear var(--delay) forwards;left:var(--left);background:var(--color);transform:rotate(var(--spin))}
       @keyframes aws-saa-fall{to{top:110vh;transform:translateX(var(--drift)) rotate(calc(var(--spin) + 720deg));opacity:.8}}
@@ -229,20 +237,20 @@ function celebrateGoal() {
     celebrationOverlay.setAttribute("aria-hidden", "true");
     const banner = document.createElement("div");
     banner.className = "aws-saa-tracker-banner";
-    banner.textContent = "🎉 ¡Meta diaria cumplida!";
     celebrationOverlay.append(style, banner);
     document.documentElement.append(celebrationOverlay);
   }
 
   const overlay = celebrationOverlay;
+  overlay.querySelector(".aws-saa-tracker-banner").textContent = message;
   const burst = document.createElement("div");
   burst.className = "aws-saa-tracker-burst";
-  const colors = ["#3f6d8c", "#527d99", "#18344e", "#8bb6ce", "#d7a84a"];
-  for (let i = 0; i < 84; i += 1) {
+  const burstColors = colors || ["#3f6d8c", "#527d99", "#18344e", "#8bb6ce", "#d7a84a"];
+  for (let i = 0; i < pieceCount; i += 1) {
     const piece = document.createElement("i");
     piece.className = "aws-saa-tracker-piece";
     piece.style.setProperty("--left", `${Math.random() * 100}%`);
-    piece.style.setProperty("--color", colors[i % colors.length]);
+    piece.style.setProperty("--color", burstColors[i % burstColors.length]);
     piece.style.setProperty("--delay", `${Math.random() * 1.1}s`);
     piece.style.setProperty("--fall-time", `${2.4 + Math.random() * 1.2}s`);
     piece.style.setProperty("--spin", `${Math.random() * 360}deg`);
@@ -262,6 +270,16 @@ function celebrateGoal() {
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message?.type === "DAILY_GOAL_REACHED") {
     celebrateGoal();
+    return;
+  }
+
+  if (message?.type === "DAILY_STREAK_EXTENDED") {
+    const extraTime = celebrationDuration(message.extraSeconds);
+    celebrateGoal(
+      `🔥 ¡Seguís en racha! +${extraTime} extra hoy`,
+      120,
+      ["#d7a84a", "#f2c14e", "#2f6851", "#75a77f", "#8bb6ce"],
+    );
     return;
   }
 

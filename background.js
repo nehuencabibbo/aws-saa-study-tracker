@@ -348,9 +348,15 @@ async function syncSnapshot(snapshot, tabId, confirmedCompletionIds = []) {
 
   const targetAfter = targetSeconds(state, today);
   const target = Math.max(targetBefore, targetAfter);
-  if (planWindow(state.plan, today).phase === "active" &&
-    tabId != null && target > 0 && beforeToday < target && afterToday >= target) {
-    chrome.tabs.sendMessage(tabId, { type: "DAILY_GOAL_REACHED" }).catch(() => {});
+  if (planWindow(state.plan, today).phase === "active" && tabId != null && target > 0) {
+    if (beforeToday < target && afterToday >= target) {
+      chrome.tabs.sendMessage(tabId, { type: "DAILY_GOAL_REACHED" }).catch(() => {});
+    } else if (beforeToday >= target && afterToday > beforeToday) {
+      chrome.tabs.sendMessage(tabId, {
+        type: "DAILY_STREAK_EXTENDED",
+        extraSeconds: afterToday - beforeToday,
+      }).catch(() => {});
+    }
   }
   return state;
 }

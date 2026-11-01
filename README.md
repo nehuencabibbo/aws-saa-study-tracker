@@ -26,7 +26,7 @@ El plan permite definir una cantidad de días desde la fecha de inicio o una fec
 - Progreso total por duración: tiempo visto, tiempo pendiente y porcentaje del curso.
 - Plan ajustable por duración o fecha final, con ritmo diario estimado.
 - Sincronización automática al detectar cambios en la lista de lecciones y botón **Actualizar** para volver a leerla a pedido.
-- Confeti al alcanzar la meta diaria; el botón se habilita al llegar al 100 % y cada toque agrega otro estallido.
+- Confeti al alcanzar la meta diaria y un estallido más grande con mensaje de racha por cada video adicional; el botón de confeti también se habilita al llegar al 100 % y cada toque agrega otro estallido.
 - Porcentaje diario en el badge del ícono de Chrome.
 - Progreso guardado en el almacenamiento local de Chrome.
 

@@ -18,21 +18,25 @@
         <span class="course-badge">SAA-C03</span>
       </header>
 
-      <section class="daily-card" aria-labelledby="daily-heading">
-        <div class="section-topline">
-          <p class="eyebrow"><span class="eyebrow-dot"></span>PROGRESO DE HOY</p>
-          <span class="daily-percent" id="today-percent">—</span>
-        </div>
+      <section class="daily-card" id="daily-card" aria-labelledby="daily-heading">
         <div class="daily-heading">
-          <h2 id="daily-heading">
-            <!-- Lucide Static 1.66.0: target. Licenses: see THIRD_PARTY_NOTICES.md. -->
-            <svg class="goal-icon lucide lucide-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" />
-              <circle cx="12" cy="12" r="6" />
-              <circle cx="12" cy="12" r="2" />
-            </svg>
-            Meta diaria
-          </h2>
+          <div class="daily-title-row">
+            <h2 id="daily-heading">
+              <span class="goal-icon-wrap">
+                <!-- Lucide Static 1.66.0: target with an arrow-up-right dart. License: see THIRD_PARTY_NOTICES.md. -->
+                <svg class="goal-icon lucide lucide-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                  <path class="goal-dart" d="m20 4-7 7" />
+                  <path class="goal-dart" d="m15.2 9.2-3.2 3.2 4.1-1.1" />
+                  <path class="goal-dart" d="M17.5 4H20v2.5" />
+                </svg>
+              </span>
+              Meta diaria
+            </h2>
+            <span class="daily-percent" id="today-percent">—</span>
+          </div>
           <span class="celebrate-tooltip-wrap" id="celebrate-tooltip" tabindex="0" role="group" aria-label="Disponible solo al alcanzar el 100% de la meta diaria." data-tooltip="Disponible solo al alcanzar el 100% de la meta diaria.">
             <button class="celebrate-button" id="celebrate-button" type="button" aria-label="Confeti: se habilita al alcanzar el 100% de la meta diaria" disabled>
               <!-- Lucide Static 1.66.0: party-popper. License: see THIRD_PARTY_NOTICES.md. -->

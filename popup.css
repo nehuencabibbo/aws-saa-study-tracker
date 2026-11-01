@@ -14,8 +14,9 @@
   --daily-fill: #3f6d8c;
   --daily-fill-end: #527d99;
   --daily-tint: #eaf1f6;
-  --total-fill: #18344e;
-  --total-tint: #e8eef3;
+  --total-fill: #5b5d94;
+  --total-tint: #efeff8;
+  --accent-warm: #9b6b16;
   --sync-idle: #697a8a;
   --sync-loading: #2e668a;
   --sync-success: #2f6851;
@@ -46,14 +47,18 @@ h1 { margin: 0; font-size: 18px; line-height: 1.2; letter-spacing: -.35px; }
 .course-subtitle { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
 .course-badge { margin-left: auto; flex: none; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: #40556c; font-size: 10px; font-weight: 750; letter-spacing: .35px; }
 
-.daily-card { padding: 17px 18px 16px; border: 1px solid #d4e1ea; border-radius: 16px; background: linear-gradient(135deg, #f5f9fc 0%, var(--surface) 78%); box-shadow: 0 3px 12px #233b5010; }
-.section-topline, .daily-heading, .progress-copy { display: flex; align-items: center; justify-content: space-between; }
-.section-topline { margin-bottom: 11px; }
-.section-topline .eyebrow { display: flex; align-items: center; gap: 7px; color: #345a74; }
-.eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--daily-fill); }
-.daily-percent { padding: 5px 8px; border-radius: 999px; background: var(--daily-tint); color: #294d66; font-size: 12px; font-weight: 750; font-variant-numeric: tabular-nums; }
-.daily-heading h2 { display: flex; align-items: center; gap: 7px; margin: 0; font-size: 17px; letter-spacing: -.3px; }
-.goal-icon { width: 18px; height: 18px; flex: none; color: var(--daily-fill); }
+.daily-card { padding: 16px 17px 16px; border: 1px solid #d4e1ea; border-left: 3px solid var(--daily-fill); border-radius: 16px; background: linear-gradient(135deg, #edf4f9 0%, #fff 78%); box-shadow: 0 3px 12px #233b5010; transition: background .2s ease, border-color .2s ease; }
+.daily-heading, .progress-copy { display: flex; align-items: center; justify-content: space-between; }
+.daily-heading { gap: 12px; }
+.daily-title-row { min-width: 0; display: flex; align-items: center; gap: 10px; }
+.daily-heading h2 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 17px; letter-spacing: -.3px; white-space: nowrap; }
+.goal-icon-wrap { width: 31px; height: 31px; display: grid; flex: none; place-items: center; border-radius: 10px; background: #dceaf3; }
+.goal-icon { width: 22px; height: 22px; flex: none; color: var(--daily-fill); }
+.goal-icon .goal-dart { stroke: var(--accent-warm); stroke-width: 2.5; }
+.daily-percent { min-width: 42px; padding: 5px 8px; border-radius: 999px; background: var(--daily-tint); color: #294d66; font-size: 12px; font-weight: 750; font-variant-numeric: tabular-nums; text-align: center; }
+.daily-card.reached, .daily-card.course-complete { border-left-color: var(--sync-success); background: linear-gradient(135deg, #edf7f0 0%, #fff 78%); }
+.daily-card.reached .goal-icon-wrap, .daily-card.course-complete .goal-icon-wrap { background: #dcefe1; }
+.daily-card.reached .daily-percent, .daily-card.course-complete .daily-percent { background: #dcefe1; color: #26563e; }
 .celebrate-tooltip-wrap { position: relative; flex: none; display: inline-flex; }
 .celebrate-tooltip-wrap::after { position: absolute; z-index: 20; top: calc(100% + 8px); right: 0; width: 205px; padding: 8px 10px; border: 1px solid #29445d; border-radius: 8px; background: #15283a; color: #fff; content: attr(data-tooltip); font-size: 11px; font-weight: 550; line-height: 1.4; text-align: left; box-shadow: 0 5px 14px #15283a2e; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .15s ease; }
 .celebrate-tooltip-wrap:hover::after, .celebrate-tooltip-wrap:focus-within::after { opacity: 1; visibility: visible; }
@@ -67,7 +72,8 @@ h1 { margin: 0; font-size: 18px; line-height: 1.2; letter-spacing: -.35px; }
 .progress-track, .total-track { overflow: hidden; border-radius: 999px; background: var(--progress-track); }
 .progress-track { height: 10px; }
 .progress-track[hidden] { display: none !important; }
-.progress-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--daily-fill), var(--daily-fill-end)); transition: width .35s ease; }
+.progress-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--daily-fill), var(--daily-fill-end)); transition: width .35s ease, background .2s ease; }
+.daily-card.reached .progress-fill { background: linear-gradient(90deg, #43835d, #6fa982); }
 .goal-caption { min-height: 17px; margin: 9px 0 0; color: #536476; font-size: 12px; line-height: 1.4; }
 .goal-caption.done { color: var(--sync-success); font-weight: 700; }
 
@@ -81,7 +87,7 @@ h1 { margin: 0; font-size: 18px; line-height: 1.2; letter-spacing: -.35px; }
 .total-time strong { font-size: 16px; }
 .total-time > span { color: var(--muted); font-size: 11px; }
 .total-track { height: 8px; }
-.total-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--total-fill), var(--daily-fill)); transition: width .35s ease; }
+.total-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--total-fill), #8b82ba); transition: width .35s ease; }
 .total-footnote { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin-top: 8px; }
 .total-caption, .lesson-caption { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.4; }
 .lesson-caption { color: var(--quiet); }
@@ -117,7 +123,10 @@ button.edit-plan-button { min-height: 34px; display: inline-flex; align-items: c
 .form-error { min-height: 0; margin: 0; color: var(--error); font-size: 11px; line-height: 1.35; }
 .form-error:not(:empty) { margin-top: 4px; }
 
-.sync-panel { margin-top: 11px; padding: 12px 13px; border: 1px solid var(--line); border-radius: 13px; background: var(--surface-muted); }
+.sync-panel { margin-top: 11px; padding: 12px 13px; border: 1px solid var(--line); border-left: 3px solid var(--sync-idle); border-radius: 13px; background: var(--surface-muted); transition: background .2s ease, border-color .2s ease; }
+.sync-panel.ready { border-left-color: var(--sync-success); background: linear-gradient(135deg, #edf6f0, var(--surface-muted)); }
+.sync-panel.error { border-left-color: var(--error); background: linear-gradient(135deg, #fbefee, var(--surface-muted)); }
+.sync-panel.loading { border-left-color: var(--sync-loading); }
 .sync-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .sync-title { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .sync-title h2 { margin: 0; color: #344a60; font-size: 12px; line-height: 1.35; }

@@ -1,4 +1,5 @@
 const elements = {
+  dailyCard: document.querySelector("#daily-card"),
   todayProgress: document.querySelector("#today-progress"),
   todayProgressLabel: document.querySelector("#today-progress-label"),
   todayPercent: document.querySelector("#today-percent"),
@@ -26,6 +27,7 @@ const elements = {
   form: document.querySelector("#plan-form"),
   formError: document.querySelector("#form-error"),
   lessonCount: document.querySelector("#lesson-count"),
+  syncPanel: document.querySelector(".sync-panel"),
   syncDot: document.querySelector("#sync-dot"),
   syncStatus: document.querySelector("#sync-status"),
   refreshButton: document.querySelector("#refresh-button"),
@@ -217,6 +219,8 @@ function updateView(state) {
   const totalProgress = totalCourseSeconds > 0 ? Math.min(100, (completedCourseSeconds / totalCourseSeconds) * 100) : 0;
   const reached = dailyGoalActive && watchedToday >= targetSeconds;
 
+  elements.dailyCard.classList.toggle("reached", reached);
+  elements.dailyCard.classList.toggle("course-complete", courseComplete);
   elements.todayProgress.textContent = dailyGoalActive
     ? `${formatTime(watchedToday)} / ${formatPositiveTime(targetSeconds)}`
     : "—";
@@ -277,6 +281,8 @@ function updateView(state) {
   }
   elements.syncDot.classList.toggle("ready", Boolean(state.lastSyncAt));
   elements.syncDot.classList.remove("error", "loading");
+  elements.syncPanel.classList.toggle("ready", Boolean(state.lastSyncAt));
+  elements.syncPanel.classList.remove("error", "loading");
   if (state.lastSyncAt) {
     const syncedAt = new Date(state.lastSyncAt);
     const syncedDate = syncedAt.toLocaleDateString([], { day: "2-digit", month: "2-digit", year: "numeric" });
@@ -374,6 +380,8 @@ elements.refreshButton.addEventListener("click", async () => {
   elements.refreshButton.innerHTML = '<span class="button-spinner" aria-hidden="true"></span> Leyendo…';
   elements.syncDot.classList.remove("ready", "error");
   elements.syncDot.classList.add("loading");
+  elements.syncPanel.classList.remove("ready", "error");
+  elements.syncPanel.classList.add("loading");
   elements.syncStatus.textContent = "Leyendo la pestaña activa y comprobando el curso.";
   elements.syncStatus.classList.remove("error");
   try {
@@ -381,11 +389,16 @@ elements.refreshButton.addEventListener("click", async () => {
     await loadState();
     elements.syncDot.classList.toggle("ready", result.ok);
     elements.syncDot.classList.toggle("error", !result.ok);
+    elements.syncPanel.classList.toggle("ready", result.ok);
+    elements.syncPanel.classList.toggle("error", !result.ok);
+    elements.syncPanel.classList.remove("loading");
     elements.syncStatus.textContent = result.message;
     elements.syncStatus.classList.toggle("error", !result.ok);
   } catch (error) {
     elements.syncDot.classList.remove("loading", "ready");
     elements.syncDot.classList.add("error");
+    elements.syncPanel.classList.remove("loading", "ready");
+    elements.syncPanel.classList.add("error");
     elements.syncStatus.textContent = error.message;
     elements.syncStatus.classList.add("error");
   } finally {
@@ -491,6 +504,7 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
 
 loadState().catch((error) => {
   elements.syncDot.classList.add("error");
+  elements.syncPanel.classList.add("error");
   elements.syncStatus.textContent = error.message;
   elements.syncStatus.classList.add("error");
 });
