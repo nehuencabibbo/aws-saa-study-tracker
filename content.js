@@ -8,6 +8,11 @@ let lastScanDiagnostic = null;
 let observer = null;
 let extensionContextInvalidated = false;
 let celebrationOverlay = null;
+let quizCelebrationOverlay = null;
+let quizCelebrationTimer = null;
+let observedQuizNode = null;
+let observedQuizKey = "";
+let quizCompletionArmed = false;
 const completionRetryTimers = new Set();
 
 function errorDetails(error) {
@@ -212,6 +217,119 @@ function containsSidebar(node) {
     Boolean(node.querySelector("#courseSidebar, .course-sidebar"));
 }
 
+function isInsideQuiz(node) {
+  const element = node instanceof Element ? node : node instanceof Node ? node.parentElement : null;
+  return Boolean(element && (element.id === "quiz-app" || element.closest("#quiz-app")));
+}
+
+function containsQuiz(node) {
+  if (!(node instanceof Element)) return false;
+  return node.id === "quiz-app" || Boolean(node.querySelector("#quiz-app"));
+}
+
+function isTrackedCoursePage() {
+  const pathCourseId = location.pathname.match(/^\/courses\/(\d+)(?:\/|$)/)?.[1];
+  if (pathCourseId) return pathCourseId === PLATFORM_COURSE_ID;
+  const sidebar = document.querySelector("#courseSidebar, .course-sidebar");
+  return [...(sidebar?.querySelectorAll("[data-course-id]") || [])]
+    .some((element) => element.getAttribute("data-course-id") === PLATFORM_COURSE_ID);
+}
+
+function quizDisplayName() {
+  const heading = document.querySelector("#lecture_heading")?.textContent?.replace(/\s+/g, " ").trim() || "";
+  const shortName = heading.replace(/\s*(?:section\s+)?quiz\s*$/i, "").trim();
+  return shortName || heading || "Quiz de sección";
+}
+
+function celebrateQuiz(name) {
+  if (!quizCelebrationOverlay?.isConnected) {
+    const style = document.createElement("style");
+    style.textContent = `
+      .aws-saa-tracker-quiz-celebration{position:fixed;inset:0;z-index:2147483647;pointer-events:none;overflow:hidden;font-family:system-ui,sans-serif}
+      .aws-saa-tracker-quiz-toast{position:absolute;top:24px;left:50%;box-sizing:border-box;display:flex;align-items:center;gap:13px;max-width:calc(100vw - 32px);padding:13px 19px 13px 13px;border:1px solid #a99cff;border-radius:18px;background:linear-gradient(125deg,#25234d 0%,#443d7b 58%,#554a91 100%);color:#fff;box-shadow:0 14px 38px #211b4c55;animation:aws-saa-quiz-pop .55s cubic-bezier(.2,.9,.25,1.25) both}
+      .aws-saa-tracker-quiz-medal{position:relative;width:42px;height:42px;display:grid;flex:none;place-items:center;border-radius:14px;background:linear-gradient(145deg,#ffe38c,#e5aa35);color:#3d315e;font-size:22px;box-shadow:0 4px 12px #17152f55;animation:aws-saa-quiz-medal .8s ease-out both}
+      .aws-saa-tracker-quiz-medal::after{position:absolute;inset:-5px;border:1px solid #fff8;border-radius:17px;content:"";animation:aws-saa-quiz-ring 1.2s ease-out .15s both}
+      .aws-saa-tracker-quiz-copy{min-width:0;display:flex;flex-direction:column;gap:2px}
+      .aws-saa-tracker-quiz-copy strong{font-size:14px;line-height:1.25;letter-spacing:.1px}
+      .aws-saa-tracker-quiz-copy span{max-width:calc(100vw - 118px);overflow:hidden;color:#e4e0ff;font-size:12px;line-height:1.35;text-overflow:ellipsis;white-space:nowrap}
+      @keyframes aws-saa-quiz-pop{from{opacity:0;top:4px;transform:translate(-50%,-8px) scale(.9)}to{opacity:1;top:24px;transform:translate(-50%,0) scale(1)}}
+      @keyframes aws-saa-quiz-medal{0%{transform:rotate(-18deg) scale(.5)}65%{transform:rotate(8deg) scale(1.14)}100%{transform:rotate(0) scale(1)}}
+      @keyframes aws-saa-quiz-ring{0%{opacity:.85;transform:scale(.75)}100%{opacity:0;transform:scale(1.35)}}
+      @media(prefers-reduced-motion:reduce){.aws-saa-tracker-quiz-toast,.aws-saa-tracker-quiz-medal,.aws-saa-tracker-quiz-medal::after{animation:none!important}}
+    `;
+    quizCelebrationOverlay = document.createElement("div");
+    quizCelebrationOverlay.className = "aws-saa-tracker-quiz-celebration";
+    quizCelebrationOverlay.setAttribute("role", "status");
+    quizCelebrationOverlay.setAttribute("aria-live", "polite");
+    quizCelebrationOverlay.setAttribute("aria-atomic", "true");
+    quizCelebrationOverlay.append(style);
+    document.documentElement.append(quizCelebrationOverlay);
+  }
+
+  const toast = document.createElement("div");
+  toast.className = "aws-saa-tracker-quiz-toast";
+  const medal = document.createElement("span");
+  medal.className = "aws-saa-tracker-quiz-medal";
+  medal.setAttribute("aria-hidden", "true");
+  medal.textContent = "★";
+  const copy = document.createElement("span");
+  copy.className = "aws-saa-tracker-quiz-copy";
+  const title = document.createElement("strong");
+  title.textContent = "¡Quiz completado!";
+  const subtitle = document.createElement("span");
+  subtitle.textContent = name ? `Terminaste ${name}` : "Un paso más cerca de la certificación";
+  copy.append(title, subtitle);
+  toast.append(medal, copy);
+  quizCelebrationOverlay.querySelector(".aws-saa-tracker-quiz-toast")?.remove();
+  quizCelebrationOverlay.append(toast);
+
+  clearTimeout(quizCelebrationTimer);
+  const overlay = quizCelebrationOverlay;
+  quizCelebrationTimer = setTimeout(() => {
+    overlay.remove();
+    if (quizCelebrationOverlay === overlay) {
+      quizCelebrationOverlay = null;
+      quizCelebrationTimer = null;
+    }
+  }, 5200);
+}
+
+function syncQuizCompletionState() {
+  if (!isTrackedCoursePage()) {
+    observedQuizNode = null;
+    observedQuizKey = "";
+    quizCompletionArmed = false;
+    return;
+  }
+
+  const quiz = document.querySelector("#quiz-app .quiz");
+  if (!quiz) {
+    observedQuizNode = null;
+    observedQuizKey = "";
+    quizCompletionArmed = false;
+    return;
+  }
+
+  const lectureId = location.pathname.match(/\/lectures\/(\d+)(?:\/|$)/)?.[1] || location.pathname;
+  const quizKey = `${lectureId}:${quiz.id || "quiz"}`;
+  const finished = quiz.classList.contains("finished");
+  if (quiz !== observedQuizNode || quizKey !== observedQuizKey) {
+    observedQuizNode = quiz;
+    observedQuizKey = quizKey;
+    quizCompletionArmed = !finished;
+    return;
+  }
+
+  if (!finished) {
+    quizCompletionArmed = true;
+    return;
+  }
+  if (!quizCompletionArmed) return;
+
+  quizCompletionArmed = false;
+  celebrateQuiz(quizDisplayName());
+}
+
 function celebrationDuration(seconds) {
   const minutes = Math.max(1, Math.round((Number(seconds) || 0) / 60));
   const hours = Math.floor(minutes / 60);
@@ -332,12 +450,18 @@ console.info(`${LOG_PREFIX} Content script inyectado.`, pageDetails());
 
 observer = new MutationObserver((records) => {
   if (extensionContextInvalidated) return;
-  const relevant = records.some((record) => {
+  const sidebarChanged = records.some((record) => {
     if (record.type === "attributes") return isInsideSidebar(record.target);
     return isInsideSidebar(record.target) ||
       [...record.addedNodes, ...record.removedNodes].some(containsSidebar);
   });
-  if (relevant) scheduleSnapshot();
+  const quizChanged = records.some((record) => {
+    if (record.type === "attributes") return isInsideQuiz(record.target);
+    return isInsideQuiz(record.target) ||
+      [...record.addedNodes, ...record.removedNodes].some(containsQuiz);
+  });
+  if (sidebarChanged) scheduleSnapshot();
+  if (sidebarChanged || quizChanged) syncQuizCompletionState();
 });
 
 observer.observe(document.documentElement, {
@@ -364,9 +488,25 @@ document.addEventListener("click", (event) => {
   scheduleCompletionSync();
 }, true);
 
-window.addEventListener("popstate", () => scheduleSnapshot("popstate navigation"));
-window.addEventListener("hashchange", () => scheduleSnapshot("hash navigation"));
-window.addEventListener("pageshow", () => scheduleSnapshot("page show"));
-document.addEventListener("turbo:load", () => scheduleSnapshot("Turbo navigation"));
-document.addEventListener("turbolinks:load", () => scheduleSnapshot("Turbolinks navigation"));
+window.addEventListener("popstate", () => {
+  syncQuizCompletionState();
+  scheduleSnapshot("popstate navigation");
+});
+window.addEventListener("hashchange", () => {
+  syncQuizCompletionState();
+  scheduleSnapshot("hash navigation");
+});
+window.addEventListener("pageshow", () => {
+  syncQuizCompletionState();
+  scheduleSnapshot("page show");
+});
+document.addEventListener("turbo:load", () => {
+  syncQuizCompletionState();
+  scheduleSnapshot("Turbo navigation");
+});
+document.addEventListener("turbolinks:load", () => {
+  syncQuizCompletionState();
+  scheduleSnapshot("Turbolinks navigation");
+});
+syncQuizCompletionState();
 scheduleSnapshot();
