@@ -101,14 +101,39 @@
         </form>
       </section>
 
+      <section class="calendar-card" aria-labelledby="calendar-heading">
+        <div class="calendar-header">
+          <div class="calendar-title">
+            <p class="eyebrow">HISTORIAL DIARIO</p>
+            <h2 id="calendar-heading">Meta por día</h2>
+          </div>
+          <div class="calendar-nav" aria-label="Navegar por los meses">
+            <button class="calendar-nav-button" id="calendar-prev" type="button" aria-label="Mes anterior">‹</button>
+            <span class="calendar-month" id="calendar-month" aria-live="polite">—</span>
+            <button class="calendar-nav-button" id="calendar-next" type="button" aria-label="Mes siguiente">›</button>
+          </div>
+        </div>
+        <div class="calendar-weekdays" aria-hidden="true">
+          <span>lun</span><span>mar</span><span>mié</span><span>jue</span><span>vie</span><span>sáb</span><span>dom</span>
+        </div>
+        <div class="calendar-days" id="calendar-days" role="list" aria-label="Estado diario de la meta"></div>
+        <div class="calendar-legend" aria-label="Leyenda del calendario">
+          <span><i class="calendar-legend-mark is-reached" aria-hidden="true">✓</i>Cumplida</span>
+          <span><i class="calendar-legend-mark is-missed" aria-hidden="true">×</i>No alcanzada</span>
+          <span><i class="calendar-legend-mark is-in-progress" aria-hidden="true">•</i>En curso</span>
+          <span><i class="calendar-legend-mark is-future" aria-hidden="true">·</i>Futura</span>
+          <span><i class="calendar-legend-mark is-no-goal" aria-hidden="true">—</i>Sin meta</span>
+        </div>
+        <p class="calendar-summary" id="calendar-summary" aria-live="polite"></p>
+      </section>
+
       <section class="total-card" aria-labelledby="total-heading">
         <div class="total-topline">
           <p class="eyebrow">PROGRESO TOTAL</p>
-          <span class="total-percent" id="total-percent">—</span>
         </div>
         <div class="total-copy">
           <h2 id="total-heading">Visto</h2>
-          <span class="total-time"><strong id="total-progress">—</strong><span id="total-duration">—</span></span>
+          <span class="total-time"><strong id="total-progress">—</strong><span class="total-percent" id="total-percent">—</span><span id="total-duration">—</span></span>
         </div>
         <div class="total-track" id="total-track" role="progressbar" aria-label="Progreso total del curso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Cargando">
           <div class="total-fill" id="total-fill"></div>

@@ -6,6 +6,11 @@ const elements = {
   dailyFill: document.querySelector("#daily-fill"),
   progressTrack: document.querySelector(".progress-track"),
   goalCaption: document.querySelector("#goal-caption"),
+  calendarPrev: document.querySelector("#calendar-prev"),
+  calendarNext: document.querySelector("#calendar-next"),
+  calendarMonth: document.querySelector("#calendar-month"),
+  calendarDays: document.querySelector("#calendar-days"),
+  calendarSummary: document.querySelector("#calendar-summary"),
   celebrateButton: document.querySelector("#celebrate-button"),
   celebrateTooltip: document.querySelector("#celebrate-tooltip"),
   totalPercent: document.querySelector("#total-percent"),
@@ -37,6 +42,7 @@ let selectedPlanMode = "duration";
 let planFormDirty = false;
 let planEditorOpen = false;
 let latestState;
+let displayedCalendarMonth = todayKey().slice(0, 7);
 const LOG_PREFIX = "[AWS SAA Tracker popup]";
 
 function allLectures(state) {
@@ -191,6 +197,170 @@ function isCompletedToday(lecture) {
   return todayKey(new Date(lecture.completedAt)) === todayKey();
 }
 
+function shiftMonthKey(monthKey, offset) {
+  const [year, month] = monthKey.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1 + offset, 1));
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
+function formatMonth(monthKey) {
+  return new Intl.DateTimeFormat("es-AR", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${monthKey}-01T00:00:00Z`));
+}
+
+function buildCalendarActivity(lectures) {
+  const secondsByDate = new Map();
+  const completionDateByLecture = new Map();
+
+  lectures.forEach((lecture) => {
+    if (!lecture.completedAt) return;
+    const timestamp = Date.parse(lecture.completedAt);
+    if (!Number.isFinite(timestamp)) return;
+    const dateKey = todayKey(new Date(timestamp));
+    completionDateByLecture.set(lecture, dateKey);
+    secondsByDate.set(dateKey, (secondsByDate.get(dateKey) || 0) + (lecture.durationSeconds || 0));
+  });
+
+  return { secondsByDate, completionDateByLecture };
+}
+
+function calendarDateStatus(dateKey, context) {
+  const { plan, today, lectures, completionDateByLecture, secondsByDate } = context;
+  if (dateKey < plan.startDate || dateKey > plan.endDate) return { kind: "outside", watched: 0, target: 0 };
+  if (dateKey > today) return { kind: "future", watched: 0, target: 0 };
+
+  const watched = secondsByDate.get(dateKey) || 0;
+  if (dateKey === today) {
+    if (context.courseComplete) return { kind: "complete", watched, target: 0 };
+    if (!context.dailyGoalActive || context.targetSeconds <= 0) return { kind: "complete", watched, target: 0 };
+    return {
+      kind: watched >= context.targetSeconds ? "reached" : "in-progress",
+      watched,
+      target: context.targetSeconds,
+    };
+  }
+
+  const remainingAtStart = lectures.reduce((sum, lecture) => {
+    if (lecture.durationSeconds == null) return sum;
+    const completedDate = completionDateByLecture.get(lecture);
+    if (!completedDate && lecture.completed) return sum;
+    if (completedDate && completedDate < dateKey) return sum;
+    return sum + (lecture.durationSeconds || 0);
+  }, 0);
+  if (remainingAtStart <= 0) return { kind: "complete", watched, target: 0 };
+
+  const daysRemaining = daysBetweenDateKeys(dateKey, plan.endDate) + 1;
+  if (daysRemaining <= 0) return { kind: "outside", watched, target: 0 };
+  const target = remainingAtStart / daysRemaining;
+  return { kind: watched >= target ? "reached" : "missed", watched, target };
+}
+
+function renderCalendar(state, currentDay) {
+  const plan = state.plan || {};
+  if (!isDateKey(plan.startDate) || !isDateKey(plan.endDate)) {
+    elements.calendarDays.replaceChildren();
+    elements.calendarSummary.textContent = "Definí las fechas del plan para ver el calendario.";
+    return;
+  }
+
+  const today = todayKey();
+  const firstMonth = plan.startDate.slice(0, 7);
+  const lastVisibleDate = plan.endDate > today ? plan.endDate : today;
+  const lastMonth = lastVisibleDate.slice(0, 7);
+  const preferredDate = today < plan.startDate ? plan.startDate : today > plan.endDate ? plan.endDate : today;
+  const preferredMonth = preferredDate.slice(0, 7);
+  if (displayedCalendarMonth < firstMonth || displayedCalendarMonth > lastMonth) {
+    displayedCalendarMonth = preferredMonth;
+  }
+
+  elements.calendarMonth.textContent = formatMonth(displayedCalendarMonth);
+  elements.calendarPrev.disabled = displayedCalendarMonth <= firstMonth;
+  elements.calendarNext.disabled = displayedCalendarMonth >= lastMonth;
+  elements.calendarDays.replaceChildren();
+
+  const [year, month] = displayedCalendarMonth.split("-").map(Number);
+  const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  const firstWeekdayOffset = (new Date(Date.UTC(year, month - 1, 1)).getUTCDay() + 6) % 7;
+  for (let index = 0; index < firstWeekdayOffset; index += 1) {
+    const empty = document.createElement("span");
+    empty.className = "calendar-empty";
+    empty.setAttribute("aria-hidden", "true");
+    elements.calendarDays.append(empty);
+  }
+
+  const activity = buildCalendarActivity(currentDay.lectures);
+  const context = {
+    ...currentDay,
+    ...activity,
+    plan,
+    today,
+  };
+  const counts = { reached: 0, missed: 0, inProgress: 0, future: 0, noGoal: 0 };
+  const classByKind = {
+    reached: "is-reached",
+    missed: "is-missed",
+    "in-progress": "is-in-progress",
+    future: "is-future",
+    complete: "is-complete",
+    outside: "is-outside-plan",
+  };
+  const markByKind = {
+    reached: "✓",
+    missed: "×",
+    "in-progress": "•",
+    future: "·",
+    complete: "✓",
+    outside: "·",
+  };
+  const kindLabel = {
+    reached: "meta cumplida",
+    missed: "meta no alcanzada",
+    "in-progress": "meta en curso",
+    future: "día futuro",
+    complete: "curso completo, sin meta diaria",
+    outside: "fuera del plan",
+  };
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const dateKey = `${displayedCalendarMonth}-${String(day).padStart(2, "0")}`;
+    const status = calendarDateStatus(dateKey, context);
+    const cell = document.createElement("div");
+    cell.className = `calendar-day ${classByKind[status.kind]}`;
+    if (dateKey === today) cell.classList.add("is-today");
+    cell.setAttribute("role", "listitem");
+    const detail = status.target > 0
+      ? ` · ${formatTime(status.watched)} de ${formatPositiveTime(status.target)}`
+      : "";
+    const fullDate = formatDate(dateKey).replace(/\.$/, "");
+    cell.setAttribute("aria-label", `${fullDate}: ${kindLabel[status.kind]}${detail}`);
+
+    const number = document.createElement("span");
+    number.className = "calendar-date";
+    number.textContent = String(day);
+    const mark = document.createElement("span");
+    mark.className = "calendar-day-mark";
+    mark.setAttribute("aria-hidden", "true");
+    mark.textContent = markByKind[status.kind];
+    cell.append(number, mark);
+    elements.calendarDays.append(cell);
+
+    if (status.kind === "reached") counts.reached += 1;
+    if (status.kind === "missed") counts.missed += 1;
+    if (status.kind === "in-progress") counts.inProgress += 1;
+    if (status.kind === "future") counts.future += 1;
+    if (status.kind === "complete" || status.kind === "outside") counts.noGoal += 1;
+  }
+
+  const summary = [`${counts.reached} ${counts.reached === 1 ? "meta cumplida" : "metas cumplidas"}`, `${counts.missed} ${counts.missed === 1 ? "no alcanzada" : "no alcanzadas"}`];
+  if (counts.inProgress) summary.push("hoy en curso");
+  if (counts.future) summary.push(`${counts.future} ${counts.future === 1 ? "día futuro" : "días futuros"}`);
+  if (counts.noGoal) summary.push(`${counts.noGoal} ${counts.noGoal === 1 ? "día sin meta" : "días sin meta"}`);
+  elements.calendarSummary.textContent = summary.join(" · ");
+}
+
 function updateView(state) {
   latestState = state;
   const lectures = allLectures(state);
@@ -218,6 +388,13 @@ function updateView(state) {
   const dailyRemainingSeconds = Math.max(0, targetSeconds - watchedToday);
   const totalProgress = totalCourseSeconds > 0 ? Math.min(100, (completedCourseSeconds / totalCourseSeconds) * 100) : 0;
   const reached = dailyGoalActive && watchedToday >= targetSeconds;
+
+  renderCalendar(state, {
+    lectures,
+    targetSeconds,
+    dailyGoalActive,
+    courseComplete,
+  });
 
   elements.dailyCard.classList.toggle("reached", reached);
   elements.dailyCard.classList.toggle("course-complete", courseComplete);
@@ -424,6 +601,18 @@ elements.celebrateButton.addEventListener("click", async () => {
       if (latestState) updateView(latestState);
     }, 3500);
   }
+});
+
+elements.calendarPrev.addEventListener("click", () => {
+  if (!latestState || elements.calendarPrev.disabled) return;
+  displayedCalendarMonth = shiftMonthKey(displayedCalendarMonth, -1);
+  updateView(latestState);
+});
+
+elements.calendarNext.addEventListener("click", () => {
+  if (!latestState || elements.calendarNext.disabled) return;
+  displayedCalendarMonth = shiftMonthKey(displayedCalendarMonth, 1);
+  updateView(latestState);
 });
 
 elements.planModeButtons.forEach((button) => {

@@ -6,7 +6,7 @@ La extensión convierte la duración de las lecciones completadas en progreso di
 
 ## Interfaz
 
-La ventana reúne la meta del día, el avance acumulado del curso, el plazo elegido y el estado de sincronización.
+La ventana reúne la meta del día, un calendario mensual de cumplimiento, el avance acumulado del curso, el plazo elegido y el estado de sincronización.
 
 <p align="center">
   <img src="docs/screenshots/dashboard.png" alt="Panel del tracker con el progreso diario y total del curso" width="390">
@@ -23,6 +23,7 @@ El plan permite definir una cantidad de días desde la fecha de inicio o una fec
 ## Funciones
 
 - Meta diaria en minutos, con barra y porcentaje.
+- Calendario mensual con metas cumplidas y no alcanzadas; el día actual queda en curso hasta alcanzar la meta.
 - Progreso total por duración: tiempo visto, tiempo pendiente y porcentaje del curso.
 - Plan ajustable por duración o fecha final, con ritmo diario estimado.
 - Sincronización automática al detectar cambios en la lista de lecciones y botón **Actualizar** para volver a leerla a pedido.
@@ -49,9 +50,10 @@ Al actualizar los archivos, recargá la extensión desde `chrome://extensions` y
 
 1. Abrí una lección del curso SAA-C03. La extensión lee el menú de lecciones y guarda el estado que informa la plataforma.
 2. En el popup, revisá cuánto completaste hoy, cuánto te falta para la meta y el progreso total del curso.
-3. En **Editar fechas**, indicá cuándo empezaste y elegí una duración o una fecha final. La vista previa muestra el ritmo diario necesario antes de guardar.
-4. Completá las lecciones en la plataforma. Al pulsar **Complete and Continue**, el tracker identifica la lección de la URL y confirma el avance cuando abre la siguiente; también vuelve a leer el sidebar cuando la plataforma actualiza su estado.
-5. Usá **Actualizar** si querés forzar una lectura de la pestaña activa.
+3. En el calendario, recorré los meses del plan para ver qué días alcanzaste la meta; los días futuros quedan señalados por separado.
+4. En **Editar fechas**, indicá cuándo empezaste y elegí una duración o una fecha final. La vista previa muestra el ritmo diario necesario antes de guardar.
+5. Completá las lecciones en la plataforma. Al pulsar **Complete and Continue**, el tracker identifica la lección de la URL y confirma el avance cuando abre la siguiente; también vuelve a leer el sidebar cuando la plataforma actualiza su estado.
+6. Usá **Actualizar** si querés forzar una lectura de la pestaña activa.
 
 El badge de Chrome muestra el porcentaje de la meta diaria. El popup conserva el detalle en minutos y horas.
 
@@ -63,6 +65,7 @@ Si querés actualizar los iconos desde Lucide, instalá las dependencias de desa
 - Durante el día, la cuota se mantiene estable mientras el progreso suma las lecciones completadas ese día; el ritmo se vuelve a calcular al cambiar el día.
 - El progreso total usa la duración de los videos, no el conteo de elementos. Cuestionarios y avisos sin duración aparecen en el número de lecciones, pero no suman tiempo.
 - Una lección cuenta solo cuando la plataforma la marca como completa. No se contabilizan avances parciales ni minutos reproducidos sin completar la lección.
+- El calendario reconstruye las metas pasadas con las fechas de finalización guardadas y el plan vigente; si se cambia el plazo, esos estados históricos se recalculan.
 - La extensión incluye un catálogo inicial de 365 elementos del sidebar, con 340 duraciones que suman **60 h 42 min**. El botón **Actualizar** permite refrescarlo con el contenido actual de la página.
 
 ## Privacidad y permisos
